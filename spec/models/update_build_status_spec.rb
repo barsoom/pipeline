@@ -29,11 +29,14 @@ describe UpdateBuildStatus do
   end
 
   context "when builds for a new revision is posted" do
-    it "adds another revision" do
+    it "adds another revision and saves a reference to the previous and the next" do
       update_with revision: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
       update_with revision: "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 
       expect(Revision.count).to eq(2)
+      revisions = Revision.order('id ASC').all
+      expect(revisions.last.previous).to eq(revisions.first)
+      expect(revisions.first.next).to eq(revisions.last)
     end
   end
 

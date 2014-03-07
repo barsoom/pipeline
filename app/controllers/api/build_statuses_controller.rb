@@ -19,6 +19,6 @@ class Api::BuildStatusesController < ApiController
   private
 
   def check_token
-    render nothing: true, status: :unauthorized unless App.api_token == params[:token]
+    render nothing: true, status: 401 unless App.api_token == params[:token] || Rails.env.development?
   end
 end

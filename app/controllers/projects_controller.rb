@@ -2,16 +2,16 @@ class ProjectsController < WebController
   before_action :get_projects
 
   def index
-    revision_amount = 2
-    locals revision_amount: revision_amount
+    revision_count = 2
+    locals revision_count: revision_count
   end
 
   def show
     project = Project.find(params[:id])
-    revision_amount = 15
+    revision_count = 15
     locals :show,
-      {revision_amount: revision_amount,
-      project: project}
+      revision_count: revision_count,
+      project: project
   end
 
   def edit

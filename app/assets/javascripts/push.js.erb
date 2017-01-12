@@ -12,7 +12,7 @@ ws.onmessage = function(message) {
     var element = $("#project_" + data.project_id);
     var numberOfRevisionsToShow = element.data("number-of-revisions-to-show");
 
-    element.html(data.html).slice(numberOfRevisionsToShow).hide();
+    element.html(data.html).find(".revision").slice(numberOfRevisionsToShow).hide();
   }
 };
 

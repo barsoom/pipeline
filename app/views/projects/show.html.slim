@@ -1,4 +1,4 @@
 .row
   .span12
-    .project id="project_#{project.id}"
+    .project id="project_#{project.id}" data-number-of-revisions-to-show=revision_count
       = render "project", project: project, revision_count: revision_count

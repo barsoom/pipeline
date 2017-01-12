@@ -1,6 +1,8 @@
 class ProjectsController < WebController
   before_action :get_projects
 
+  MAX_REVISIONS = 15
+
   def index
     revision_count = 2
     locals revision_count: revision_count
@@ -8,7 +10,7 @@ class ProjectsController < WebController
 
   def show
     project = Project.find(params[:id])
-    revision_count = 15
+    revision_count = MAX_REVISIONS
     locals :show,
       revision_count: revision_count,
       project: project

@@ -9,7 +9,12 @@ ws.onmessage = function(message) {
     console.log("Got ping from server.")
   } else {
     var data = JSON.parse(message.data);
-    $("#project_" + data.project_id).html(data.html);
+    var element = $("#project_" + data.project_id);
+
+    var numberOfRevisionsToShow = element.data("number-of-revisions-to-show");
+    var html = $("<div>").html(data.html).slice(numberOfRevisionsToShow).hide().html();
+
+    element.html(html);
   }
 };
 

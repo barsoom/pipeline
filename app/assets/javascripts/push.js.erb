@@ -10,11 +10,9 @@ ws.onmessage = function(message) {
   } else {
     var data = JSON.parse(message.data);
     var element = $("#project_" + data.project_id);
-
     var numberOfRevisionsToShow = element.data("number-of-revisions-to-show");
-    var html = $("<div>").html(data.html).slice(numberOfRevisionsToShow).hide().html();
 
-    element.html(html);
+    element.html(data.html).slice(numberOfRevisionsToShow).hide();
   }
 };
 

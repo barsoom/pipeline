@@ -25,11 +25,17 @@ class ProjectsController < WebController
 
     project.attributes = project_params
 
-    # Simple workaround to remove projects from our dashboard when they are renamed.
-    # Name is used as a unique identifier since we don't pass id using the webhook.
+    # Simple workaround to avoid duplicate projects in apps using the webhook by
+    # first removing the old one and then adding a new one when renaming a project.
+    #
+    # We have to do this because the project name is the unique identifier.
     if project.name_changed?
+      # We need a record with the old name, since that will be used as the unique identifier
       project_to_remove_in_remote_app = Project.find(project.id)
+
+      # The "destroyed?" value tells the webhook that we want to remove the project
       project_to_remove_in_remote_app.define_singleton_method(:destroyed?) { true }
+
       PostStatusToWebhook.call(project_to_remove_in_remote_app)
     end
 

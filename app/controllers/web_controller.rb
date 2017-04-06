@@ -19,7 +19,7 @@ class WebController < ApplicationController
     raise "Need WEB_PASSWORD configured in prod." unless ENV['WEB_PASSWORD']
 
     if !session[:logged_in] && params[:pw] != ENV['WEB_PASSWORD']
-      render text: ''
+      render text: 'Authentication missing.', status: 401
     else
       session[:logged_in] = true
     end

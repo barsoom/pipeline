@@ -1,3 +1,9 @@
+dependencies:
+
+  # Fix issues until we can upgrade to CircleCI 2.0.
+  pre:
+    - gem update --system
+
 test:
   override:
     - bundle exec rake

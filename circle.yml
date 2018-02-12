@@ -2,7 +2,7 @@ dependencies:
 
   # Fix issues until we can upgrade to CircleCI 2.0.
   pre:
-    - gem update --system
+    - sudo ln -s /home/ubuntu /home/travis
 
 test:
   override:

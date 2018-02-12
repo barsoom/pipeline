@@ -76,7 +76,8 @@ class PushBackend
   end
 
   def build_redis
-    uri = URI.parse(ENV["REDISCLOUD_URL"] || "localhost:6379")
+    port = ENV["DEVBOX"] ? `service_port redis`.chomp : 6379
+    uri = URI.parse(ENV["REDISCLOUD_URL"] || "redis://localhost:#{port}")
     Redis.new(host: uri.host, port: uri.port, password: uri.password)
   end
 end

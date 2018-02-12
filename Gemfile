@@ -4,9 +4,9 @@ def on_heroku?
   ENV["DYNO"]
 end
 
-ruby "2.2.3"
+ruby "2.5.0"
 
-gem "rails", "4.2.5.1"
+gem "rails", "~> 4.2"
 
 # Bundle edge Rails instead:
 # gem "rails", :git => "git://github.com/rails/rails.git"
@@ -16,7 +16,7 @@ gem "slim"
 gem "attr_extras"
 gem "bootstrap_forms", github: "barsoom/bootstrap_forms"
 gem "faye-websocket"
-gem "redis"
+gem "redis", "~> 3.2"
 gem "thin"
 gem "httparty"
 

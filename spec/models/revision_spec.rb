@@ -41,3 +41,15 @@ describe Revision, "#newer_revisions" do
     expect(revision2.newer_revisions).to eq([])
   end
 end
+
+describe Revision, "#seconds_from_creation_to_last_build_update" do
+  it "is the number of seconds from creation to the last build update" do
+    revision = Revision.new(created_at: 10.minutes.ago)
+    revision.builds = [
+      Build.new(updated_at: 2.minutes.ago),
+      Build.new(updated_at: 5.minutes.ago),
+    ]
+
+    expect(revision.seconds_from_creation_to_last_build_update).to be_within(1).of(8.minutes)
+  end
+end

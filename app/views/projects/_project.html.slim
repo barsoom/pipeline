@@ -16,3 +16,9 @@
         - presenter.builds.each do |build|
           span.build class=build.status
             = link_to_if(build.status_url, build.name, build.status_url, target: "_blank")
+
+        / Show time of a fully successful revision.
+        / Useful for optimizing overall commit-to-production time.
+        - if presenter.all_builds_successful?
+          span.total-time
+            = presenter.total_time_in_words

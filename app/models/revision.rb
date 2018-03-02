@@ -27,4 +27,8 @@ class Revision < ActiveRecord::Base
   def for_build(name)
     builds.where(name: name).first
   end
+
+  def seconds_from_creation_to_last_build_update
+    builds.map(&:updated_at).max - created_at
+  end
 end

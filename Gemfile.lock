@@ -68,10 +68,10 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.9.1)
     execjs (2.6.0)
-    factory_girl (4.9.0)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
     faye-websocket (0.10.2)
       eventmachine (>= 0.12.0)
@@ -200,7 +200,7 @@ DEPENDENCIES
   bootstrap_forms!
   capybara
   coffee-rails (~> 4.0.0)
-  factory_girl_rails
+  factory_bot_rails
   faye-websocket
   httparty
   jquery-rails

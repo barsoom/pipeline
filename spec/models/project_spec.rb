@@ -2,12 +2,12 @@ require "spec_helper"
 
 describe Project do
   it "is valid" do
-    project = FactoryGirl.build(:project)
+    project = FactoryBot.build(:project)
     expect(project).to be_valid
   end
 
   it "requires a name" do
-    project = FactoryGirl.build(:project, name: nil)
+    project = FactoryBot.build(:project, name: nil)
     expect(project).not_to be_valid
   end
 end
@@ -21,10 +21,10 @@ end
 
 describe Project, "latest_revisions" do
   it "returns the latest revisions in order" do
-    project = FactoryGirl.create(:project)
-    rev1 = FactoryGirl.create(:revision, project: project)
-    rev2 = FactoryGirl.create(:revision, project: project)
-    rev3 = FactoryGirl.create(:revision, project: project)
+    project = FactoryBot.create(:project)
+    rev1 = FactoryBot.create(:revision, project: project)
+    rev2 = FactoryBot.create(:revision, project: project)
+    rev3 = FactoryBot.create(:revision, project: project)
     expect(project.latest_revisions(2).map(&:id)).to eq([ rev3.id, rev2.id ])
   end
 end
@@ -55,9 +55,9 @@ end
 
 describe Project, ".all_sorted" do
   it "returns all projects projects by position and alphabetically" do
-    FactoryGirl.create(:project, name: "alpha", position: 1)
-    FactoryGirl.create(:project, name: "beta", position: 1)
-    FactoryGirl.create(:project, name: "delta", position: 0)
+    FactoryBot.create(:project, name: "alpha", position: 1)
+    FactoryBot.create(:project, name: "beta", position: 1)
+    FactoryBot.create(:project, name: "delta", position: 0)
 
     expect(Project.all_sorted.map(&:name)).to eq([ "delta", "alpha", "beta" ])
   end

@@ -2,8 +2,8 @@ require "spec_helper"
 
 describe "DELETE /api/projects", type: :request do
   it "removes a project" do
-    project1 = FactoryGirl.create(:project, name: "foo")
-    project2 = FactoryGirl.create(:project, name: "bar")
+    project1 = FactoryBot.create(:project, name: "foo")
+    project2 = FactoryBot.create(:project, name: "bar")
 
     allow(App).to receive(:api_token).and_return("secret")
 

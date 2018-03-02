@@ -10,5 +10,5 @@ unless ENV['CI']
 
   add_load_path "gems/activesupport-#{rails_version}/lib"
   add_load_path "gems/activemodel-#{rails_version}/lib"
-  add_load_path "gems/factory_girl-4.4.0/lib"
+  add_load_path "gems/factory_bot-4.4.0/lib"
 end

@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/barsoom/bootstrap_forms.git
-  revision: 94977b8668899f857115235aff76bb8b95156b5b
+  remote: https://github.com/barsoom/bootstrap_forms.git
+  revision: 779ce15d008de8089b043d1c1198a28afc6bab47
   specs:
     bootstrap_forms (1.0.3)
 

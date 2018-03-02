@@ -16,3 +16,15 @@
         - presenter.builds.each do |build|
           span.build class=build.status
             = link_to_if(build.status_url, build.name, build.status_url, target: "_blank")
+
+        / Show time of a fully successful build
+        - if presenter.builds.all?(:successful?)
+          span
+            - seconds = revision.time_from_creation_to_last_build_update / 60
+            - minutes = (seconds / 60)
+            = minutes
+            '
+            ' min
+            = seconds - minutes * 60
+            '
+            ' sec

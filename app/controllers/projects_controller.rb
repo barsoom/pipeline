@@ -1,7 +1,7 @@
 class ProjectsController < WebController
   before_action :get_projects
 
-  MAX_REVISIONS = 50
+  MAX_REVISIONS = 15
 
   def index
     revision_count = 2

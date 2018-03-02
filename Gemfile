@@ -19,7 +19,9 @@ gem "rails", "~> 4.2"
 # Bundle edge Rails instead:
 # gem "rails", :git => "git://github.com/rails/rails.git"
 
-gem "pg"
+# Locked down due to Rails dependencies, this is fixed in master: https://github.com/rails/rails/commit/181836d894b0a198b150583fe4ac97dc70badcea.
+gem "pg", "< 1.0"
+
 gem "slim"
 gem "attr_extras"
 gem "bootstrap_forms", github: "barsoom/bootstrap_forms"

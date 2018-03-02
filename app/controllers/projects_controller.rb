@@ -10,7 +10,7 @@ class ProjectsController < WebController
 
   def show
     project = Project.find(params[:id])
-    revision_count = MAX_REVISIONS
+    revision_count = params[:revision_count] || MAX_REVISIONS
     locals :show,
       revision_count: revision_count,
       project: project

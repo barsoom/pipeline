@@ -24,7 +24,7 @@ gem "slim"
 gem "attr_extras"
 gem "bootstrap_forms", github: "barsoom/bootstrap_forms"
 gem "faye-websocket"
-gem "redis", "~> 3.2"
+gem "redis"
 gem "thin"
 gem "httparty"
 
@@ -32,13 +32,13 @@ gem "httparty"
 # in production environments by default.
 group :assets do
   gem "sass-rails", "~> 4.0.0"
-  gem "coffee-rails", "~> 4.0.0"
-  gem "bootstrap-sass", "2.1.0.0"
+  gem "coffee-rails"
+  gem "bootstrap-sass"
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem "therubyracer", :platforms => :ruby
 
-  gem "uglifier", ">= 1.3.0"
+  gem "uglifier"
 end
 
 group :development, :test do

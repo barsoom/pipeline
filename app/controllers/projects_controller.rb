@@ -1,6 +1,8 @@
 class ProjectsController < WebController
   before_action :get_projects
 
+  # Keep this number low. We push updates that include revision data every time a change comes in.
+  # We've seen timeouts when this was set to 50.
   MAX_REVISIONS = 15
 
   def index

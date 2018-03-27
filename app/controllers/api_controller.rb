@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
-  before_filter :check_token
+  before_action :check_token
 
   def check_token
-    render nothing: true, status: :unauthorized unless App.api_token == params[:token]
+    render body: nil, status: :unauthorized unless App.api_token == params[:token]
   end
 end

@@ -4,8 +4,8 @@ require 'bootstrap_forms'
 class WebController < ApplicationController
   protect_from_forgery
 
-  before_filter :require_password
-  before_filter :setup_menu
+  before_action :require_password
+  before_action :setup_menu
 
   private
 

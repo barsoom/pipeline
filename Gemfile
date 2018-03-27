@@ -14,13 +14,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem "rails", "~> 4.2"
+gem "rails", "5.1.5"
 
 # Bundle edge Rails instead:
 # gem "rails", :git => "git://github.com/rails/rails.git"
 
-# Locked down due to Rails dependencies, this is fixed in master: https://github.com/rails/rails/commit/181836d894b0a198b150583fe4ac97dc70badcea.
-gem "pg", "< 1.0"
+gem "pg"
 
 gem "slim"
 gem "attr_extras"
@@ -33,7 +32,7 @@ gem "httparty"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sass-rails", "~> 4.0.0"
+  gem "sass-rails"
   gem "coffee-rails"
   gem "bootstrap-sass"
 

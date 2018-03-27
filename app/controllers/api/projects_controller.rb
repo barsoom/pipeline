@@ -5,6 +5,6 @@ class Api::ProjectsController < ApiController
 
     PostStatusToWebhook.call(project)
 
-    render text: "ok"
+    render body: nil, text: "ok"
   end
 end

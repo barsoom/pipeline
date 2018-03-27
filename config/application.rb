@@ -73,5 +73,4 @@ module Pipeline
       exit 1 if dev_or_test
     end
   end
-
 end

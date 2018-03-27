@@ -14,6 +14,6 @@ class Api::BuildStatusesController < ApiController
 
     PostStatusToWebhook.call(project)
 
-    render nothing: true
+    render body: nil
   end
 end

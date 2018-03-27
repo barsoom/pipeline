@@ -6,7 +6,7 @@ class Api::BuildsController < ApiController
 
   def unlock
     build_lock.release(revision)
-    render nothing: true
+    render body: nil
   end
 
   private

@@ -7,15 +7,15 @@ $bright-blue: #00A7F3;
   margin-top: 10px;
   margin-bottom: 10px;
 
-  .navbar-inner {
+  .navbar-header {
     min-height: 80px;
     padding: 0;
 
-    .brand {
+    .navbar-brand {
       margin: 20px 0;
     }
 
-    .nav {
+    .navbar-nav {
       float: none;
 
       li {
@@ -23,6 +23,9 @@ $bright-blue: #00A7F3;
           padding: 10px;
           background-color: #fbfbfb;
         }
+
+        list-style-type: none;
+        border: 1px solid #E7E7E7;
       }
     }
   }
@@ -32,10 +35,6 @@ $bright-blue: #00A7F3;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
-}
-
-.container > .row {
-  padding-right: 20px;
 }
 
 .help-block {

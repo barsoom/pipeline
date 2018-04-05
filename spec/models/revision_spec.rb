@@ -50,6 +50,6 @@ describe Revision, "#seconds_from_creation_to_last_build_update" do
       Build.new(updated_at: 5.minutes.ago),
     ]
 
-    expect(revision.seconds_from_creation_to_last_build_update).to be_within(1).of(8.minutes)
+    expect(revision.seconds_from_creation_to_last_build_update).to be_within(1.second).of(8.minutes)
   end
 end

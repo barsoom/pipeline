@@ -15,7 +15,7 @@ describe "GET /api/build_lock", type: :request do
     expect(JSON.parse(response.body)).to eq({ "build_locked_by" => "old_revision" })
 
     post "/api/build/unlock", params: attributes.merge(revision: "old_revision")
-    expect(response).to be_success
+    expect(response).to be_successful
 
     post "/api/build/lock", params: attributes.merge(revision: "new_revision")
     expect(JSON.parse(response.body)).to eq({ "build_locked_by" => "new_revision" })

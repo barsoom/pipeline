@@ -13,7 +13,7 @@ describe "POST /api/build_status", type: :request do
   it "adds or updates build status" do
     allow(App).to receive(:api_token).and_return("secret")
     post "/api/build_status", params: attributes.merge(token: "secret", status: "successful")
-    expect(response).to be_success
+    expect(response).to be_successful
     expect(Build.last.status).to eq("successful")
   end
 

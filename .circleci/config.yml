@@ -1,0 +1,62 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/ruby:2.5.1-node # NOTE: keep in sync with Gemfile
+      - image: redis:4.0-alpine
+
+      # NOTE: Keep versions in sync with dev.yml
+      - image: postgres:9.3.5
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_DB=pipeline_test
+
+    steps:
+      - checkout:
+          name: "Checking out code"
+
+      # Bundle and cache gems for later builds
+      - restore_cache:
+          name: "Restoring gems cache"
+          key: pipeline-gems-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: "Bundling gems"
+          command: bundle check --path vendor/bundle || bundle install --path vendor/bundle
+      - save_cache:
+          name: "Saving gems cache"
+          key: pipeline-gems-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: "Preparing database"
+          command: bash script/ci/prepare_database.sh
+
+      - run:
+          name: "Running tests"
+          command: script/ci/pipeline.sh pipeline_tests "bundle exec rake"
+
+  deploy:
+    docker:
+      - image: circleci/ruby:latest  # At least one deploy script needs ruby
+
+    steps:
+      - checkout:
+          name: "Checking out code"
+
+      - run:
+          name: "Deploying to production"
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              script/ci/pipeline.sh pipeline_deploy "script/ci/deploy.sh $HEROKU_APP_NAME"
+            fi
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test

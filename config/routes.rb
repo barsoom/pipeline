@@ -1,4 +1,6 @@
 Pipeline::Application.routes.draw do
+  get "revision" => ->(_) { [ 200, {}, [ ENV.fetch("GIT_COMMIT") ] ] }
+
   namespace :api do
     resource :build_status, only: :create
     delete "projects/:name" => "projects#destroy"

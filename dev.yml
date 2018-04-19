@@ -7,7 +7,7 @@ dependencies:
 
 docker_services:
   postgres:
-    image: "postgres:9.3.5"
+    image: "postgres:9.3.22"
     options: "-e POSTGRES_PASSWORD=dev --publish 5432 -v $DATABASE_ROOT/pipeline/postgres:/var/lib/postgresql/data"
   redis:
     image: "redis:2.8.19"

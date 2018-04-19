@@ -22,8 +22,8 @@ test:
   adapter: postgresql
   encoding: unicode
   <% if ENV["CIRCLECI"] %>
-    username: postgres
-    host: localhost
+  username: postgres
+  host: localhost
   <% end %>
   database: <%= ENV['JOB_NAME'] || 'pipeline' %>_test
   pool: 5

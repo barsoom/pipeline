@@ -4,7 +4,7 @@ def on_heroku?
   ENV["DYNO"]
 end
 
-ruby "2.5.0"
+ruby "2.5.1"
 
 # Get rid of "git protocol is insecure" warnings by fetching "github: 'foo/bar'" gems with HTTPS instead.
 # Can be removed after bundler 2.0.

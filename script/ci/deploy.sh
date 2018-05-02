@@ -34,11 +34,6 @@ function _deploy_to_heroku {
 
 function _smoke_test {
   ruby script/ci/support/wait_for_new_revision_to_serve_requests.rb $app_name $revision
-
-  echo
-  echo "Running smoke test."
-
-  APP_URL=https://$app_name.herokuapp.com script/ci/smoke_test.sh
 }
 
 _main

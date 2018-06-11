@@ -4,9 +4,9 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:2.5.1-node # NOTE: keep in sync with Gemfile
-      - image: redis:2.8.19
 
       # NOTE: Keep versions in sync with dev.yml
+      - image: redis:2.8.19
       - image: postgres:9.4.17-alpine
         environment:
           - POSTGRES_USER=postgres

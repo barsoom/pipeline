@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :build do
-    name "pipeline_tests"
+    name  { "pipeline_tests" }
     revision { FactoryBot.build(:revision) }
-    status "building"
+    status { "building" }
   end
 end

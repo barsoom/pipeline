@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/barsoom/bootstrap_forms.git
-  revision: 5c2527e329c8f246b5d3c44f00ef00661ce563e2
+  revision: db1c476c2ab11d2dec71fd72a648419d28e391a2
   specs:
     bootstrap_forms (1.0.3)
 
@@ -58,7 +58,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    capybara (3.10.1)
+    capybara (3.11.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -158,7 +158,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (4.0.3)
-    regexp_parser (1.2.0)
+    regexp_parser (1.3.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -207,7 +207,7 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.19)
+    uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)

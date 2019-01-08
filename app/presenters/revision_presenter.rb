@@ -22,4 +22,8 @@ class RevisionPresenter
 
     [ minutes, "min", seconds, "sec" ].join(" ")
   end
+
+  def created_at
+    revision.created_at.localtime.strftime("(%T %F %Z)")
+  end
 end

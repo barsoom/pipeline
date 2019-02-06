@@ -113,38 +113,38 @@ form h4 {
     background-color: #eee;
     font-size: 15px;
     border-radius: 5px;
-  }
 
-  .revision .build {
-    border-radius: 5px;
-    color: black;
-    margin-left: 5px;
-    padding: 3px;
-  }
+    .build {
+      border-radius: 5px;
+      color: black;
+      margin-left: 5px;
+      padding: 3px;
+    }
 
-  .revision .total-time, .revision .started-at {
-    color: gray;
-    margin-left: 5px;
-    padding: 3px;
-  }
+    .total-time, .started-at {
+      color: gray;
+      margin-left: 5px;
+      padding: 3px;
+    }
 
-  .revision .building {
-    background-color: $bright-blue;
-  }
+    .building {
+      background-color: $bright-blue;
+    }
 
-  .revision .successful {
-    background-color: $bright-green;
-  }
+    .successful {
+      background-color: $bright-green;
+    }
 
-  .revision .failed {
-    background-color: #EE2020;
-  }
+    .failed {
+      background-color: #EE2020;
+    }
 
-  .revision .pending {
-    background-color: #CCCCCC;
-  }
+    .pending {
+      background-color: #CCCCCC;
+    }
 
-  .revision .fixed {
-    background-color: #AAAACC;
+    .fixed {
+      background-color: #AAAACC;
+    }
   }
 }

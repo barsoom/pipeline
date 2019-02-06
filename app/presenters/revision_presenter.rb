@@ -23,7 +23,7 @@ class RevisionPresenter
     [ minutes, "min", seconds, "sec" ].join(" ")
   end
 
-  def created_at
-    revision.created_at.localtime.strftime("(%T %F %Z)")
+  def started_at_string
+    revision.created_at.localtime.strftime("(Started %T %F %Z)")
   end
 end

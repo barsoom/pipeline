@@ -22,6 +22,5 @@
         - if presenter.all_builds_successful?
           span.total-time
             = presenter.total_time_in_words
-        span.created-at
-          ' Started
-          = presenter.created_at
+        span.started-at
+          = presenter.started_at_string

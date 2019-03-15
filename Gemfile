@@ -4,7 +4,7 @@ def on_heroku?
   ENV["DYNO"]
 end
 
-ruby "2.6.1"  # NOTE: keep in sync with .circleci/config.yml
+ruby "2.6.2"  # NOTE: keep in sync with .circleci/config.yml
 
 # Get rid of "git protocol is insecure" warnings by fetching "github: 'foo/bar'" gems with HTTPS instead.
 # Can be removed after bundler 2.0.

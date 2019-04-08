@@ -32,7 +32,7 @@ gem "httparty"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem "sassc-rails"
+  gem "sass-rails"
   gem "coffee-rails"
   gem "bootstrap-sass"
 

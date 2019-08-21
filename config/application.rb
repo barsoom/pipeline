@@ -6,6 +6,7 @@ Bundler.setup(:default, :assets, Rails.env) if defined?(Bundler)
 
 require 'jquery-rails'
 require 'coffee-rails'
+require 'sassc-rails'
 require 'bootstrap-sass'
 require 'uglifier'
 require 'attr_extras'

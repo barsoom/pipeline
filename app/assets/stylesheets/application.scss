@@ -1,6 +1,7 @@
 $bright-green: #90EE30;
 $bright-blue: #00A7F3;
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
 
 .container > .navbar {

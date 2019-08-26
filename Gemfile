@@ -42,7 +42,6 @@ group :assets do
   gem "uglifier"
 end
 
-
 group :development, :test do
   gem "rspec-rails"
 end

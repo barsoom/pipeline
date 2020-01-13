@@ -16,6 +16,10 @@ jobs:
       - checkout:
           name: "Checking out code"
 
+      - run:
+          name: "Configure Bundler"
+          command: gem install bundler -v $(grep -A1 "BUNDLED WITH" Gemfile.lock | tail -n1 | xargs)
+
       # Bundle and cache gems for later builds
       - restore_cache:
           name: "Restoring gems cache"

@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/barsoom/pipeline.svg?style=svg)](https://circleci.com/gh/barsoom/pipeline)
+[![CircleCI](https://circleci.com/gh/barsoom/pipeline.svg?style=svg&circle-token=fe9fb4fcd60997d3fa4a42fd3eaa1793ee11362d)](https://circleci.com/gh/barsoom/pipeline)
 [![Code Climate](https://codeclimate.com/github/joakimk/pipeline.png)](https://codeclimate.com/github/joakimk/pipeline)
 
 ## About

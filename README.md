@@ -1,4 +1,3 @@
-[![Build Status](https://secure.travis-ci.org/joakimk/pipeline.png)](http://travis-ci.org/joakimk/pipeline)
 [![Code Climate](https://codeclimate.com/github/joakimk/pipeline.png)](https://codeclimate.com/github/joakimk/pipeline)
 
 ## About

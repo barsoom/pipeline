@@ -3,7 +3,7 @@
 # the information in Gemfile (gems, ruby version, etc).
 
 dependencies:
-  node: "0.10.30"
+  node: "8.10.0"
 
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:

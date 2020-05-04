@@ -44,20 +44,20 @@ The payload looks like this:
 
 ```json
 {
-  project_name: "pipeline",
-  project_removed: false,
-  latest_revisions: [
+  "project_name": "pipeline",
+  "project_removed": false,
+  "latest_revisions": [
     {
-      hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
-      short_name: "ea75a9",
-      builds: [
+      "hash": "ea75a9c817757f1ebe09be035c807b7fe23499a0",
+      "short_name": "ea75a9",
+      "builds": [
         {
-          name: "tests",
-          status: "building"
+          "name": "tests",
+          "status": "building"
         },
         {
-          name: "deploy",
-          status: "pending"
+          "name": "deploy",
+          "status": "pending"
         }
       ]
     }

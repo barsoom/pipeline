@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/barsoom/pipeline.svg?style=shield&circle-token=fe9fb4fcd60997d3fa4a42fd3eaa1793ee11362d)](https://circleci.com/gh/barsoom/pipeline)
-[![Code Climate](https://codeclimate.com/github/joakimk/pipeline.png)](https://codeclimate.com/github/joakimk/pipeline)
+[![Code Climate](https://codeclimate.com/github/barsoom/pipeline.svg)](https://codeclimate.com/github/barsoom/pipeline)
 
 ## About
 
@@ -26,7 +26,7 @@ The api token is set with the `API_TOKEN` environment variable.
 Build status are reported to `/api/build_status` as a POST with the following attributes:
 
 * *token*: The api token.
-* *name*: The name of the build (e.g. foo_tests or foo_deploy). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
+* *name*: The name of the build (e.g. `foo_tests` or `foo_deploy`). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
 * *repository*: The repository path (e.g. git@github...).
 * *revision*: The git revision.
 * *status_url*: The url to link to for showing build results.
@@ -42,26 +42,28 @@ Set the `WEBHOOK_URLS` config variable to the URLs (space separated) where you w
 
 The payload looks like this:
 
+```json
+{
+  project_name: "pipeline",
+  project_removed: false,
+  latest_revisions: [
     {
-      project_name: "pipeline",
-      project_removed: false,
-      latest_revisions: [
+      hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
+      short_name: "ea75a9",
+      builds: [
         {
-          hash: "ea75a9c817757f1ebe09be035c807b7fe23499a0",
-          short_name: "ea75a9",
-          builds: [
-            {
-              name: "tests",
-              status: "building"
-            },
-            {
-              name: "deploy",
-              status: "pending"
-            }
-          ]
+          name: "tests",
+          status: "building"
+        },
+        {
+          name: "deploy",
+          status: "pending"
         }
       ]
     }
+  ]
+}
+```
 
 The webhook will only be called once and it will wait no longer than 10 seconds. It does not delay the `/api/build_status` call since it runs in a thread.
 
@@ -105,7 +107,7 @@ TODO. Grep for ENV :).
 
 
     heroku config:set WEB_PASSWORD=your-password-here
-    heroku config:set SECRET_KEY_BASE=$(rake secret) 
+    heroku config:set SECRET_KEY_BASE=$(rake secret)
 
     # By default builds will go from "building" to "pending" after 60 minutes
     # as some builds may have been killed in a bad way where the final status
@@ -128,7 +130,7 @@ You need postgres installed.
 
 ## Development notes
 
-The project controller has a before_action for projects
+The project controller has a `before_action` for projects
 
     before_action :get_projects
 

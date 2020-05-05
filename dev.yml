@@ -4,6 +4,7 @@
 
 dependencies:
   node: "8.10.0"
+  checksum: "57ddd302260f77fa6dfe774f97b196828ec7c08aafbbd8def5e527a388d18f2d"
 
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:

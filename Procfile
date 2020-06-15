@@ -1,1 +1,1 @@
-web: bundle exec thin --port $PORT start --servers ${NUMBER_OF_SERVERS:=1}
+web: bundle exec thin -p $PORT start

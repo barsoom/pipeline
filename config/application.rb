@@ -21,6 +21,9 @@ module Pipeline
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 6.0
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(
       #{config.root}/lib
@@ -41,6 +44,12 @@ module Pipeline
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # ig.i18n.default_locale = :de
+
+    # https://stackoverflow.com/a/57681360
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
+
     config.middleware.use PushBackend
 
     # Configure the default encoding used in templates for Ruby 1.9.

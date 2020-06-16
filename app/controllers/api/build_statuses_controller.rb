@@ -1,4 +1,6 @@
 class Api::BuildStatusesController < ApiController
+  protect_from_forgery prepend: true
+
   def create
     project = UpdateBuildStatus.call(
       params[:name],

@@ -2,7 +2,7 @@ require "faye/websocket"
 require "redis"
 require "thread"
 
-Faye::WebSocket.load_adapter("thin")
+Faye::WebSocket.load_adapter("puma")
 
 class PushBackend
   CHANNEL        = "push"

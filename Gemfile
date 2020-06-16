@@ -26,7 +26,7 @@ gem "attr_extras"
 gem "bootstrap_forms", github: "barsoom/bootstrap_forms"
 gem "faye-websocket"
 gem "redis"
-gem "thin"
+gem "puma"
 gem "httparty"
 
 # Gems used only for assets and not required

@@ -88,7 +88,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
-    diff-lcs (1.4.2)
+    diff-lcs (1.4.4)
     erubi (1.9.0)
     eventmachine (1.2.7)
     execjs (2.7.0)

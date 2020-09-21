@@ -3,8 +3,8 @@
 # the information in Gemfile (gems, ruby version, etc).
 
 dependencies:
-  node: "8.10.0"
-  checksum: "57ddd302260f77fa6dfe774f97b196828ec7c08aafbbd8def5e527a388d18f2d"
+  node: "14.11.0"
+  checksum: "e88b5655e223ea0c17cdcaef9300f1401ee32c4a"
 
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:

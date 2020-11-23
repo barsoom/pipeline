@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/barsoom/bootstrap_forms.git
-  revision: db1c476c2ab11d2dec71fd72a648419d28e391a2
+  revision: b79281b5b603dd90442a7f5d26c8120dec5c10b3
   specs:
-    bootstrap_forms (1.0.3)
+    bootstrap_forms (1.0.4)
 
 GEM
   remote: https://rubygems.org/
@@ -170,7 +170,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
-    redis (4.2.2)
+    redis (4.2.5)
     regexp_parser (1.8.2)
     rspec-core (3.10.0)
       rspec-support (~> 3.10.0)

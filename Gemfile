@@ -6,14 +6,6 @@ end
 
 ruby "2.7.2"  # NOTE: keep in sync with .circleci/config.yml
 
-# Get rid of "git protocol is insecure" warnings by fetching "github: 'foo/bar'" gems with HTTPS instead.
-# Can be removed after bundler 2.0.
-# From: https://github.com/bundler/bundler/issues/4978#issuecomment-272248627
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
 gem "rails", "6.0.3.4"
 
 # Bundle edge Rails instead:

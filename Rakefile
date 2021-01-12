@@ -6,7 +6,7 @@ def load_application_tasks
 end
 
 def load_non_rails_tasks
-  path = File.expand_path('../lib/tasks/no_rails', __FILE__)
+  path = File.expand_path("../lib/tasks/no_rails", __FILE__)
 
   # These are named .rb, not .rake, or else Rails may pick them up.
   ruby_files = Dir.glob(path + "/*.rb")
@@ -14,10 +14,10 @@ def load_non_rails_tasks
 end
 
 def load_rails_tasks_when_needed
-  require File.expand_path('../lib/railsless_rake_task_runner.rb', __FILE__)
+  require File.expand_path("../lib/railsless_rake_task_runner.rb", __FILE__)
 
   RailslessRakeTaskRunner.load_rails_when_needed_with(lambda {
-    require File.expand_path('../config/application', __FILE__)
+    require File.expand_path("../config/application", __FILE__)
     Pipeline::Application.load_tasks
   })
 end

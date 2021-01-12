@@ -5,6 +5,7 @@ module RailslessRakeTaskRunner
 
   def self.load_rails
     raise "You need register a loader" unless @loader
+
     @loader.call
   end
 end

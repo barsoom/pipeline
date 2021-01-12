@@ -1,5 +1,5 @@
-if ENV['LOAD_PROFILE']
-  SLOW = (ENV['SLOW'] && ENV['SLOW'].to_f) || 0.05
+if ENV["LOAD_PROFILE"]
+  SLOW = (ENV["SLOW"] && ENV["SLOW"].to_f) || 0.05
 
   puts "profiling enabled."
   module Kernel

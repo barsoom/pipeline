@@ -5,7 +5,7 @@ class ProjectStatusSerializer
     {
       project_name: project.name,
       project_removed: project.destroyed?,
-      latest_revisions: project.latest_revisions.map { |revision| serialize_revision(revision) }
+      latest_revisions: project.latest_revisions.map { |revision| serialize_revision(revision) },
     }
   end
 

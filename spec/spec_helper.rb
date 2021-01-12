@@ -1,7 +1,7 @@
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'factory_bot_rails'
+require "rspec/rails"
+require "factory_bot_rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 

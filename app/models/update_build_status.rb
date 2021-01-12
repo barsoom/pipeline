@@ -1,5 +1,5 @@
-require 'build'
-require 'attr_extras'
+require "build"
+require "attr_extras"
 
 # Intended to be used by a client within a CI server to post status to this app.
 class UpdateBuildStatus

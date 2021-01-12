@@ -52,7 +52,7 @@ describe BuildPresenter, "#list" do
     ]
     build_mappings = [
       BuildMapping.new("foo_tests", "tests"),
-      BuildMapping.new("foo_deploy_staging", "staging")
+      BuildMapping.new("foo_deploy_staging", "staging"),
     ]
 
     revision = double(:revision, builds: builds, build_mappings: build_mappings)
@@ -63,11 +63,11 @@ describe BuildPresenter, "#list" do
 
   it "fills out with blank build results until they turn up" do
     builds = [
-      Build.new(name: "foo_tests", status: "building")
+      Build.new(name: "foo_tests", status: "building"),
     ]
     build_mappings = [
       BuildMapping.new("foo_tests", "tests"),
-      BuildMapping.new("foo_deploy_staging", "staging")
+      BuildMapping.new("foo_deploy_staging", "staging"),
     ]
 
     revision = double(:revision, builds: builds, build_mappings: build_mappings)
@@ -80,7 +80,7 @@ describe BuildPresenter, "#list" do
   it "returns building status as pending if nothing has happened in a while (e.g. when you manually stopped a build)" do
     builds = [
       Build.new(name: "foo_tests", status: "building", updated_at: (1.hour + 1.minute).ago),
-      Build.new(name: "foo_staging", status: "building", updated_at: (1.hour - 1.minute).ago)
+      Build.new(name: "foo_staging", status: "building", updated_at: (1.hour - 1.minute).ago),
     ]
 
     revision = double(:revision, builds: builds, build_mappings: [])
@@ -116,7 +116,7 @@ describe BuildPresenter, "#list" do
 
     build_mappings = [
       BuildMapping.new("foo_tests_0", "tests"),
-      BuildMapping.new("foo_tests_1", "tests")
+      BuildMapping.new("foo_tests_1", "tests"),
     ]
 
     revision = double(:revision, builds: builds, build_mappings: build_mappings, newer_revisions: [])

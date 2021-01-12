@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class MenuItem
   def initialize(name, current)
@@ -6,6 +6,6 @@ class MenuItem
   end
 
   def class
-    @active ? 'active' : ''
+    @active ? "active" : ""
   end
 end

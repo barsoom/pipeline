@@ -5,7 +5,7 @@ require "thread"
 Faye::WebSocket.load_adapter("puma")
 
 class PushBackend
-  CHANNEL        = "push"
+  CHANNEL = "push"
 
   def self.push(data)
     # No redis in test env for now

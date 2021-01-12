@@ -1,17 +1,17 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 Bundler.setup(:default, :assets, Rails.env) if defined?(Bundler)
 
-require 'jquery-rails'
-require 'coffee-rails'
-require 'sassc-rails'
-require 'bootstrap-sass'
-require 'uglifier'
-require 'attr_extras'
-require 'slim'
-require_relative '../app/middleware/push_backend'
+require "jquery-rails"
+require "coffee-rails"
+require "sassc-rails"
+require "bootstrap-sass"
+require "uglifier"
+require "attr_extras"
+require "slim"
+require_relative "../app/middleware/push_backend"
 
 I18n.enforce_available_locales = true
 
@@ -56,7 +56,7 @@ module Pipeline
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [ :password ]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -70,11 +70,11 @@ module Pipeline
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = "1.0"
 
     dev_or_test = Rails.env.test? || Rails.env.development?
     default_key = dev_or_test ? "test" : nil
-    config.secret_key_base = ENV['SECRET_KEY_BASE'] || default_key
+    config.secret_key_base = ENV["SECRET_KEY_BASE"] || default_key
 
     unless config.secret_key_base
       puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."

@@ -34,7 +34,7 @@ describe ProjectStatusSerializer do
               name: "deploy",
               status: "pending",
             },
-          ]
+          ],
         },
         {
           hash: "0000000000000000000000000000000000000000",
@@ -48,8 +48,8 @@ describe ProjectStatusSerializer do
               name: "deploy",
               status: "successful",
             },
-          ]
-        }
+          ],
+        },
       ]
     )
 

@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   end
 
   def latest_revisions(limit = 10)
-    revisions.order('id desc').limit(limit)
+    revisions.order("id desc").limit(limit)
   end
 
   def github_wiki_url
@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
 
   def set_name
     return unless repository
+
     self.name ||= repository.split("/").last.split(".").first
   end
 end

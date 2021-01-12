@@ -13,5 +13,5 @@ Pipeline::Application.routes.draw do
   end
 
   resources :projects
-  root :to => 'projects#index'
+  root :to => "projects#index"
 end

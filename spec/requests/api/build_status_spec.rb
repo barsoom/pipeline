@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "POST /api/build_status", type: :request do
   let(:attributes) {

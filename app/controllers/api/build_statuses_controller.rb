@@ -12,7 +12,7 @@ class Api::BuildStatusesController < ApiController
 
     PushBackend.push({ project_id: project.id,
       html: render_to_string(partial: "projects/project",
-                             locals: { project: project, revision_count: ::ProjectsController::MAX_REVISIONS }) })
+                             locals: { project: project, revision_count: ::ProjectsController::MAX_REVISIONS }), })
 
     PostStatusToWebhook.call(project)
 

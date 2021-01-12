@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe "Projects", type: :feature do
   describe "Removing projects" do

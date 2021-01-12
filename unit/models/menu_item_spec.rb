@@ -1,4 +1,4 @@
-require 'menu_item'
+require "menu_item"
 
 describe MenuItem, "class" do
   it "depends if menu item name and current menu item match" do

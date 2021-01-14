@@ -13,8 +13,8 @@ require "rails"
   rails/test_unit/railtie
   sprockets/railtie
 ).each do |railtie|
-    require railtie
-  rescue LoadError
+  require railtie
+rescue LoadError
 end
 
 Bundler.setup(:default, :assets, Rails.env) if defined?(Bundler)

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/barsoom/barsoom_utils.git
-  revision: 281fe1ebd413b79a04308974dc331ef5a100e9d5
+  revision: 2cdc2e99cdad2f4b190f4b7e8bf2f8a69c468399
   specs:
     barsoom_utils (0.1.0)
 
@@ -74,7 +74,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    ast (2.4.1)
+    ast (2.4.2)
     attr_extras (6.2.4)
     autoprefixer-rails (10.2.0.0)
       execjs
@@ -99,7 +99,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     crass (1.0.6)
     diff-lcs (1.4.4)
     e2mmap (0.1.0)
@@ -152,7 +152,7 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     parallel (1.20.1)
-    parser (2.7.2.0)
+    parser (3.0.0.0)
       ast (~> 2.4.1)
     pg (1.2.3)
     public_suffix (4.0.6)
@@ -217,16 +217,16 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.1)
-    rubocop (1.7.0)
+    rubocop (1.8.1)
       parallel (~> 1.10)
-      parser (>= 2.7.1.5)
+      parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
       rubocop-ast (>= 1.2.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.4.0)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
     ruby-progressbar (1.11.0)
     sassc (2.4.0)
@@ -240,7 +240,7 @@ GEM
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
-    solargraph (0.40.1)
+    solargraph (0.40.2)
       backport (~> 1.1)
       benchmark
       bundler (>= 1.17.2)
@@ -248,7 +248,7 @@ GEM
       jaro_winkler (~> 1.5)
       kramdown (~> 2.3)
       kramdown-parser-gfm (~> 1.1)
-      parser (~> 2.3)
+      parser (~> 3.0)
       reverse_markdown (>= 1.0.5, < 3)
       rubocop (>= 0.52)
       thor (~> 1.0)
@@ -262,13 +262,13 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.2)
-    thor (1.0.1)
+    thor (1.1.0)
     tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.7.0)
+    unicode-display_width (2.0.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -307,4 +307,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.5
+   2.2.6

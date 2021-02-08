@@ -4,6 +4,8 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:3.0.0-node # NOTE: keep in sync with Gemfile
+        environment:
+          - BUNDLE_PATH=vendor/bundle
 
       # NOTE: Keep versions in sync with dev.yml
       - image: redis:2.8.19
@@ -14,9 +16,7 @@ jobs:
           - POSTGRES_PASSWORD=password
 
     steps:
-      - checkout:
-          name: "Checking out code"
-
+      - checkout
       - run:
           name: "Configure Bundler"
           command: gem install bundler -v $(grep -A1 "BUNDLED WITH" Gemfile.lock | tail -n1 | xargs)
@@ -27,7 +27,7 @@ jobs:
           key: pipeline-gems-{{ checksum "Gemfile.lock" }}
       - run:
           name: "Bundling gems"
-          command: bundle check --path vendor/bundle || bundle install --path vendor/bundle
+          command: bundle check || bundle install
       - save_cache:
           name: "Saving gems cache"
           key: pipeline-gems-{{ checksum "Gemfile.lock" }}
@@ -47,9 +47,7 @@ jobs:
       - image: circleci/ruby:latest  # At least one deploy script needs ruby
 
     steps:
-      - checkout:
-          name: "Checking out code"
-
+      - checkout
       - run:
           name: "Deploying to production"
           command: |

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/barsoom/barsoom_utils.git
-  revision: 2cdc2e99cdad2f4b190f4b7e8bf2f8a69c468399
+  revision: 32c5e5c02bcc970b02392cd3ed109586cd420053
   specs:
     barsoom_utils (0.1.0)
 
@@ -307,4 +307,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.7
+   2.2.9

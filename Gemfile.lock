@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/barsoom/bootstrap_forms.git
-  revision: 87d67ea8ee7e30bb543b55da5a205bbbda30b73d
+  revision: f73a43716929953b81aa8028b7cba3c7b8117933
   specs:
     bootstrap_forms (1.0.4)
 
@@ -217,7 +217,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.9.1)
+    rubocop (1.10.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -307,4 +307,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.9
+   2.2.11

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/barsoom/barsoom_utils.git
-  revision: c8d1c54b26a4f2562f1459bb41d5960c6eb73cd7
+  revision: 2cbc0c4adc707eabf20e2903e933688fe5e5fe7a
   specs:
     barsoom_utils (0.1.0)
 
@@ -205,7 +205,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.12.1)
+    rubocop (1.13.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)

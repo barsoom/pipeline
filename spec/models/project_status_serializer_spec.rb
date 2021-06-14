@@ -50,7 +50,7 @@ describe ProjectStatusSerializer do
             },
           ],
         },
-      ]
+      ],
     )
 
     # Can signal that a project has been removed

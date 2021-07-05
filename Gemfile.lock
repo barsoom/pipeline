@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/barsoom/barsoom_utils.git
-  revision: e54d97c0bbe55b54a2ba3dee5df9cdc7e0fa3b85
+  revision: 79bccecd26a5fa28c3ae9bcb672d1560be02c237
   specs:
     barsoom_utils (0.1.0)
 
@@ -72,7 +72,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     attr_extras (6.2.4)
@@ -132,7 +132,7 @@ GEM
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2021.0225)
+    mime-types-data (3.2021.0704)
     mini_mime (1.0.3)
     mini_portile2 (2.5.3)
     minitest (5.14.4)
@@ -207,7 +207,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.17.0)
+    rubocop (1.18.2)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)

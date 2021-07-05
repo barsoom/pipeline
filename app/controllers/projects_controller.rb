@@ -51,7 +51,11 @@ class ProjectsController < WebController
   end
 
   def destroy
-    Project.find(params[:id]).destroy
+    project = Project.find(params[:id])
+
+    project.destroy
+    PostStatusToWebhook.call(project)
+
     redirect_to root_path, notice: "Project removed."
   end
 

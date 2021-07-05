@@ -7,12 +7,15 @@ describe "Projects", type: :feature do
       project.save!
       visit root_path
 
+      allow(PostStatusToWebhook).to receive(:call)
+
       within("#project_#{project.id}") do
         click_link "Edit"
       end
 
       click_link "Remove"
 
+      expect(PostStatusToWebhook).to have_received(:call).with(project)
       expect(current_path).to eq(root_path)
       expect(page).to have_content("Project removed.")
       expect(Project.all).to be_empty

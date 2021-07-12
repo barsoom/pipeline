@@ -4,7 +4,7 @@ def on_heroku?
   ENV["DYNO"]
 end
 
-ruby "3.0.1"  # NOTE: keep in sync with .circleci/config.yml
+ruby "3.0.2"  # NOTE: keep in sync with .circleci/config.yml
 
 gem "rails", "6.1.3.2"
 

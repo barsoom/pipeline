@@ -1,5 +1,5 @@
 [![CircleCI](https://circleci.com/gh/barsoom/pipeline.svg?style=shield&circle-token=fe9fb4fcd60997d3fa4a42fd3eaa1793ee11362d)](https://circleci.com/gh/barsoom/pipeline)
-[![Code Climate](https://codeclimate.com/github/barsoom/pipeline.svg)](https://codeclimate.com/github/barsoom/pipeline)
+[![Maintainability](https://api.codeclimate.com/v1/badges/37b5a384d1577b23c532/maintainability)](https://codeclimate.com/github/barsoom/pipeline/maintainability)
 
 ## About
 

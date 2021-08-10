@@ -16,14 +16,6 @@ class Project < ActiveRecord::Base
     revisions.order("id desc").limit(limit)
   end
 
-  def github_wiki_url
-    if github_url
-      "#{github_url}/wiki"
-    else
-      nil
-    end
-  end
-
   def github_url
     if repository.to_s.include?("github.com")
       match = repository.match(/github.com:(.*?)\./)

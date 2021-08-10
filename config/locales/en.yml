@@ -9,6 +9,6 @@ en:
     attributes:
       project:
         name: "Name"
-        github_url: "Github URL"
+        github_url: "GitHub URL"
 
   hello: "Hello world"

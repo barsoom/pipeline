@@ -2,7 +2,7 @@ DUMP_PATH = "/tmp/pipeline_prod_db.dump"
 
 namespace :app do
   desc "Reset development database from a production dump"
-  task :reset => [ :dump_db, :download_db, :import_db, :"db:migrate", :"db:test:prepare" ] do
+  task reset: [ :dump_db, :download_db, :import_db, :"db:migrate", :"db:test:prepare" ] do
     puts "Done!"
   end
 
@@ -18,7 +18,7 @@ namespace :app do
   end
 
   desc "Import the downloaded dump"
-  task :import_db => [ :"db:drop", :"db:create" ] do
+  task import_db: [ :"db:drop", :"db:create" ] do
     if ENV["DEVBOX"]
       system(%{PGPASSWORD=dev pg_restore --no-acl --no-owner -d pipeline_development --username postgres --host localhost --port $(service_port postgres) "#{DUMP_PATH}"}) || exit(1)
     else

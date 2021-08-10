@@ -10,4 +10,4 @@ namespace :spec do
   end
 end
 
-task :default => [ :"spec:unit", :"spec" ]
+task default: [ :"spec:unit", :"spec" ]

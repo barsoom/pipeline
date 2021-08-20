@@ -6,7 +6,7 @@ end
 
 ruby "3.0.2"  # NOTE: keep in sync with .circleci/config.yml
 
-gem "rails", "6.1.4"
+gem "rails", "6.1.4.1"
 
 gem "pg"
 

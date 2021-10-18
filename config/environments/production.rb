@@ -44,7 +44,7 @@ Pipeline::Application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   logger = Logger.new(STDOUT)
-  logger.logger.formatter = config.log_formatter
+  logger.formatter = config.log_formatter
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Use a different cache store in production

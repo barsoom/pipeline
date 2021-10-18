@@ -39,8 +39,4 @@ group :test do
   gem "factory_bot_rails"
 end
 
-group :production do
-  gem "rails_12factor"
-end
-
 gem "jquery-rails"

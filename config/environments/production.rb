@@ -8,8 +8,8 @@ Pipeline::Application.configure do
   config.consider_all_requests_local       = ENV["CONSIDER_ALL_REQUESTS_LOCAL"]
   config.action_controller.perform_caching = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_files = true
+  # Heroku needs this
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -42,6 +42,10 @@ Pipeline::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+
+  logger = Logger.new(STDOUT)
+  logger.logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store

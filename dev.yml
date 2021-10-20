@@ -4,8 +4,8 @@
 
 dependencies:
   node:
-    version: "14.11.0"
-    checksum: "e88b5655e223ea0c17cdcaef9300f1401ee32c4a"
+    version: "16.11.1"
+    checksum: "8b5a54b284e524984772d34dc2efc68a10fc2f91db11390c6035ef2a9509ef2c"
 
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:

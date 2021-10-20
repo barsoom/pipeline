@@ -10,9 +10,9 @@ dependencies:
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:
   postgres:
-    image: "postgres:11.11"
+    image: "postgres:11.13"
     options: "-e POSTGRES_PASSWORD=dev --publish 5432 -v $DATABASE_ROOT/pipeline/postgres:/var/lib/postgresql/data"
   redis:
-    image: "redis:2.8.19"
+    image: "redis:6.0.9"
     options: "--publish 6379 -v $DATABASE_ROOT/pipeline/redis:/data"
     command: "redis-server --appendonly yes"

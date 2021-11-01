@@ -2,11 +2,6 @@
 # development environment for this app in combination with
 # the information in Gemfile (gems, ruby version, etc).
 
-dependencies:
-  node:
-    version: "16.11.1"
-    checksum: "8b5a54b284e524984772d34dc2efc68a10fc2f91db11390c6035ef2a9509ef2c"
-
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:
   postgres:

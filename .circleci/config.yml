@@ -9,7 +9,7 @@ jobs:
 
       # NOTE: Keep versions in sync with dev.yml
       - image: redis:6.0.9
-      - image: postgres:11.13-alpine
+      - image: postgres:13.5-alpine
         environment:
           - POSTGRES_USER=postgres
           - POSTGRES_DB=pipeline_test

@@ -1,13 +1,9 @@
-task :spec do
-  system("rspec", *Dir["spec/**/*_spec.rb"]) || exit(1)
+require "rspec/core/rake_task"
+RSpec::Core::RakeTask.new(:spec)
+
+RSpec::Core::RakeTask.new("spec:unit") do |t|
+  t.rspec_opts = "-r#{File.expand_path("unit/spec_helper.rb")}"
+  t.pattern = "unit/**/*_spec.rb"
 end
 
-namespace :spec do
-  task :unit do
-    spec_helper_path = File.expand_path("unit/spec_helper.rb")
-    system("rspec", "-r#{spec_helper_path}", *Dir["unit/**/*_spec.rb"]) || exit(1)
-    puts
-  end
-end
-
-task default: [ :"spec:unit", :"spec" ]
+task default: %w[ spec:unit spec ]

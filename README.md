@@ -103,15 +103,13 @@ A build is unlocked by posting to `/api/build/unlock` with the following attribu
 
 To run the app in production you need to set a few envs.
 
-TODO. Grep for ENV :).
-
-
     heroku config:set WEB_PASSWORD=your-password-here
     heroku config:set SECRET_KEY_BASE=$(rake secret)
 
-    # By default builds will go from "building" to "pending" after 60 minutes
-    # as some builds may have been killed in a bad way where the final status
-    # was never reported. You can change this time like this:
+By default builds will go from "building" to "pending" after 60 minutes
+as some builds may have been killed in a bad way where the final status
+was never reported. You can change this time like this:
+
     # heroku config:set BUILD_TIMEOUT_IN_MINUTES=120
 
 You can limit the amount of revisions, to keep the database size manageable:

@@ -114,6 +114,12 @@ TODO. Grep for ENV :).
     # was never reported. You can change this time like this:
     # heroku config:set BUILD_TIMEOUT_IN_MINUTES=120
 
+You can limit the amount of revisions, to keep the database size manageable:
+
+    # heroku config:set REVISIONS_TO_KEEP=1000
+
+`REVISIONS_TO_KEEP` defaults to 500.
+
 ## Running the tests
 
 You need postgres installed.

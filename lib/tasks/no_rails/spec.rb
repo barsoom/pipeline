@@ -11,4 +11,7 @@ begin
 
   task default: %i[ spec:unit spec ]
 rescue LoadError
+  task :default do
+    puts "No RSpec found, no test tasks defined. This is normal in production."
+  end
 end

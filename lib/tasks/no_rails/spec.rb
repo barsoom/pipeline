@@ -9,6 +9,6 @@ begin
     t.pattern = "unit/**/*_spec.rb"
   end
 
-  task default: %w[ spec:unit spec ]
+  task default: %i[ spec:unit spec ]
 rescue LoadError
 end

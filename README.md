@@ -11,7 +11,7 @@ We run it on heroku. The instructions are not complete, but it should not be har
 
 ![how it looks](http://cl.ly/image/0r0D1C2P1I2v/Screen%20Shot%202014-02-17%20at%2013.01.15.png)
 
-Each commit shows up as it's own line, the newest at the top. Within each line boxes are shown for the different builds run on that revision.
+Each commit shows up as its own line, the newest at the top. Within each line boxes are shown for the different builds run on that revision.
 
 The build names are links to the `status_url` passed in when reporting builds. At barsoom we pass in a link to the jenkins build result console. This way we can easily get to any build result of any recent revision.
 
@@ -21,9 +21,9 @@ The api token is set with the `API_TOKEN` environment variable.
 
 ### Build status API
 
-[Example client for circleci](examples/build_reporting_client_for_circleci.sh) (just a wrapper around curl, can easily be adapted for other CI tools as well)
+[Example client for CircleCI](examples/build_reporting_client_for_circleci.sh) (just a wrapper around curl, can easily be adapted for other CI tools as well).
 
-Build status are reported to `/api/build_status` as a POST with the following attributes:
+Build status is reported to `/api/build_status` as a POST with the following attributes:
 
 * *token*: The api token.
 * *name*: The name of the build (e.g. `foo_tests` or `foo_deploy`). The app assumes that each build has a unique name. You use mappings configured for each project to display short names as in the screenshot.
@@ -38,7 +38,7 @@ Normally the client would first post with the status of `building` and then eith
 
 A webhook to receive the current project build status. Useful for displaying the current build status on dashboards.
 
-Set the `WEBHOOK_URLS` config variable to the URLs (space separated) where you want the project build status posted (as the JSON encoded parameter "payload").
+Set the `WEBHOOK_URLS` config variable to the URLs (space-separated) where you want the project build status posted (as the JSON encoded parameter "payload").
 
 The payload looks like this:
 
@@ -82,7 +82,7 @@ Removing a project
 **NOTE**: Experimental feature
 
 Builds can be locked so that only one build with a specific name can run at a time. This can be useful if you
-have a CI server that isn't capable of doing this by itself (like circleci) and you for example don't
+have a CI server that isn't capable of doing this by itself (like CircleCI) and you for example don't
 want it to try and deploy to different versions of the same app at the same time.
 
 A build is locked by posting to `/api/build/lock` with the following attributes:

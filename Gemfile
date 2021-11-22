@@ -17,8 +17,7 @@ gem "faye-websocket"
 gem "redis"
 gem "puma"
 gem "httparty"
-
-gem "barsoom_utils", github: "barsoom/barsoom_utils"
+gem "barsoom_utils"
 
 # Gems used only for assets and not required
 # in production environments by default.

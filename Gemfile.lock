@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/barsoom/barsoom_utils.git
-  revision: 6cd2b0f1bc3ba43ab89b59bc5a50fa2bcf95043d
-  specs:
-    barsoom_utils (0.1.1)
-
-GIT
   remote: https://github.com/barsoom/bootstrap_forms.git
   revision: f73a43716929953b81aa8028b7cba3c7b8117933
   specs:
@@ -78,6 +72,7 @@ GEM
     attr_extras (6.2.5)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
+    barsoom_utils (0.1.1)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -255,7 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   attr_extras
-  barsoom_utils!
+  barsoom_utils
   bootstrap-sass
   bootstrap_forms!
   capybara

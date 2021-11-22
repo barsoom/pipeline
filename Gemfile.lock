@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/barsoom/barsoom_utils.git
-  revision: 4f97d839de615fb80fffde21a6ab5c1903bafe43
+  revision: 6cd2b0f1bc3ba43ab89b59bc5a50fa2bcf95043d
   specs:
-    barsoom_utils (0.1.0)
+    barsoom_utils (0.1.1)
 
 GIT
   remote: https://github.com/barsoom/bootstrap_forms.git
@@ -75,7 +75,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    attr_extras (6.2.4)
+    attr_extras (6.2.5)
     autoprefixer-rails (10.3.3.0)
       execjs (~> 2)
     bootstrap-sass (3.4.1)

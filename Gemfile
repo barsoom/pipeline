@@ -19,9 +19,10 @@ gem "puma"
 gem "httparty"
 gem "barsoom_utils"
 
-# FIXME: net-smtp was removed from ruby standard gems. Remove when https://github.com/mikel/mail/pull/1439 is resolved.
+# FIXME: net-smtp, net-pop was removed from ruby standard gems. Remove when https://github.com/mikel/mail/pull/1439 is resolved.
 # Also see: https://github.com/rails/rails/pull/42366
 gem "net-smtp", require: false
+gem "net-pop", require: false
 
 # Gems used only for assets and not required
 # in production environments by default.

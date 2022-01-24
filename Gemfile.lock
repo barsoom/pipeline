@@ -283,7 +283,7 @@ DEPENDENCIES
   net-smtp
   pg
   puma
-  rails (= 6.1.4.4)
+  rails (~> 6.1.4)
   redis
   rspec-rails
   rubocop

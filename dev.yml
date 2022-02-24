@@ -4,8 +4,8 @@
 
 dependencies:
   node: # Keep in sync with package.json
-    version: "16.13.0"
-    checksum: "9c00e5b6024cfcbc9105f9c58cf160762e78659a345d100c5bd80a7fb38c684f"
+    version: "16.14.0"
+    checksum: "29dfce13650f063ff009d18349636333fa4305468b6a8965d442c2e88b1dd60f"
 
 # NOTE: Keep in sync with .circleci/config.yml
 docker_services:

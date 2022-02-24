@@ -1,9 +1,5 @@
 source "https://rubygems.org"
 
-def on_heroku?
-  ENV["DYNO"]
-end
-
 ruby "3.1.1"  # NOTE: keep in sync with .circleci/config.yml
 
 gem "rails", "~> 6.1.4"  # LOCKED: It's Rails!

@@ -10,7 +10,6 @@ wget https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz 1> 
 sudo mkdir -p /usr/local/lib /usr/local/bin
 sudo tar -xvzf heroku-linux-amd64.tar.gz -C /usr/local/lib 1> /dev/null
 sudo ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku
-ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
 
 # Deploy
 revision=$(git rev-parse HEAD)

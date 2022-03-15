@@ -111,6 +111,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    honeybadger (4.11.0)
     httparty (0.20.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -276,6 +277,7 @@ DEPENDENCIES
   coffee-rails
   factory_bot_rails
   faye-websocket
+  honeybadger
   httparty
   jquery-rails
   net-imap

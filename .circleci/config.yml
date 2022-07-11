@@ -3,13 +3,12 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.1.2-node # NOTE: keep in sync with Gemfile
+      - image: cimg/ruby:3.1.2-node # Keep in sync with Gemfile
         environment:
           - BUNDLE_PATH=vendor/bundle
 
-      # NOTE: Keep versions in sync with dev.yml
-      - image: redis:6.0.9
-      - image: postgres:14.4-alpine
+      - image: redis:6.0.9 # Keep versions in sync with dev.yml
+      - image: postgres:14.4-alpine # Keep versions in sync with dev.yml
         environment:
           - POSTGRES_USER=postgres
           - POSTGRES_DB=pipeline_test

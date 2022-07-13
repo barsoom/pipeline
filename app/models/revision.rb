@@ -5,7 +5,7 @@ class Revision < ActiveRecord::Base
   has_many :builds, dependent: :destroy
 
   def self.find_or_create_for_project_and_name(project, name)
-    where(project_id: project, name: name).first_or_create!
+    where(project_id: project, name:).first_or_create!
   end
 
   def github_url
@@ -25,7 +25,7 @@ class Revision < ActiveRecord::Base
   end
 
   def for_build(name)
-    builds.where(name: name).first
+    builds.where(name:).first
   end
 
   def seconds_from_creation_to_last_build_update

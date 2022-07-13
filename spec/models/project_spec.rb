@@ -22,9 +22,9 @@ end
 describe Project, "latest_revisions" do
   it "returns the latest revisions in order" do
     project = FactoryBot.create(:project)
-    _rev1 = FactoryBot.create(:revision, project: project)
-    rev2 = FactoryBot.create(:revision, project: project)
-    rev3 = FactoryBot.create(:revision, project: project)
+    _rev1 = FactoryBot.create(:revision, project:)
+    rev2 = FactoryBot.create(:revision, project:)
+    rev3 = FactoryBot.create(:revision, project:)
     expect(project.latest_revisions(2).map(&:id)).to eq([ rev3.id, rev2.id ])
   end
 end

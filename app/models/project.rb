@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.find_or_create_for_repository(repository)
-    where(repository: repository).first_or_create!
+    where(repository:).first_or_create!
   end
 
   def latest_revisions(limit = 10)

@@ -16,7 +16,7 @@ class PostStatusToWebhook
 
     webhook_urls.split.each do |webhook_url|
       Thread.new do
-        HTTParty.post(webhook_url, body: { payload: payload }, timeout: TIMEOUT)
+        HTTParty.post(webhook_url, body: { payload: }, timeout: TIMEOUT)
       end
     end
   end

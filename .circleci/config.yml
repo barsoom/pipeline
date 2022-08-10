@@ -7,7 +7,7 @@ jobs:
         environment:
           - BUNDLE_PATH=vendor/bundle
 
-      - image: redis:6.2.3 # Keep versions in sync with dev.yml
+      - image: redis:6.2.3-alpine # Keep versions in sync with dev.yml
       - image: postgres:14.4-alpine # Keep versions in sync with dev.yml
         environment:
           - POSTGRES_USER=postgres

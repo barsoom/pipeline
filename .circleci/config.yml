@@ -59,8 +59,8 @@ workflows:
   test_and_deploy:
     jobs:
       - test:
-          context: pipeline-and-heroku
+          context: shared-config
       - deploy:
-          context: pipeline-and-heroku
+          context: shared-config
           requires:
             - test

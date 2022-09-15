@@ -17,7 +17,7 @@ def stub_class(full_name, superclass = Object)
 end
 
 def stub_constant(full_name, constant = Module)
-  full_name.to_s.split(/::/).inject(Object) do |context, name|
+  full_name.to_s.split(/::/).reduce(Object) do |context, name|
     context.const_get(name)
   rescue NameError
     context.const_set(name, constant)

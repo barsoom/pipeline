@@ -2,6 +2,10 @@
 #
 # Command to run the specs the correct way when triggered from the turbux vim plugin.
 
+unless ARGV.first
+  system("bundle exec rake") && exit
+end
+
 rails_spec = ARGV.first.start_with?("spec/") || ARGV.first.include?("/spec/")
 
 if rails_spec

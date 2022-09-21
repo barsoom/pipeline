@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.1.2"  # NOTE: keep in sync with .circleci/config.yml
 
-gem "rails", "~> 6.1.4"  # LOCKED: It's Rails!
+gem "rails", "~> 7.0.4"  # LOCKED: It's Rails!
 
 gem "pg"
 
@@ -22,14 +22,11 @@ gem "net-smtp", require: false
 gem "net-pop", require: false
 gem "net-imap", require: false
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem "sassc-rails"
-  gem "bootstrap-sass"
-  gem "coffee-rails"
-  gem "uglifier"
-end
+# Assets
+gem "sassc-rails"
+gem "bootstrap-sass"
+gem "coffee-rails"
+gem "uglifier"
 
 group :development, :test do
   gem "rspec-rails"

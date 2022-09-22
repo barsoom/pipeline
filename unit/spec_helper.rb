@@ -1,4 +1,4 @@
-RAILS_ROOT = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+RAILS_ROOT = File.expand_path("..", __dir__)
 $: << File.join(RAILS_ROOT, "app/models")
 $: << File.join(RAILS_ROOT, "app/presenters")
 $: << File.join(RAILS_ROOT, "lib")

@@ -25,7 +25,6 @@ gem "net-imap", require: false
 # Assets
 gem "sassc-rails"
 gem "bootstrap-sass"
-gem "coffee-rails"
 gem "uglifier"
 
 group :development, :test do

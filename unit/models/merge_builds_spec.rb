@@ -2,9 +2,11 @@ require "spec_helper"
 require "ostruct"
 require "merge_builds"
 
-stub_constant :Build, OpenStruct
-
 RSpec.describe MergeBuilds do
+  before do
+    stub_const "Build", OpenStruct
+  end
+
   it "merges 'building' and anything to 'building'" do
     builds = [
       Build.new(name: "tests_0", status: "building"),

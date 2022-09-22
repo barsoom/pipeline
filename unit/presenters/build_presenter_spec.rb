@@ -5,9 +5,11 @@ require "build_mapping"
 require "active_support"
 require "active_support/core_ext"
 
-stub_constant :Build, OpenStruct
-
 RSpec.describe BuildPresenter, "#list" do
+  before do
+    stub_const "Build", OpenStruct
+  end
+
   it "returns builds" do
     builds = [
       Build.new(name: "tests", status: "successful"),

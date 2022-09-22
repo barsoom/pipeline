@@ -15,12 +15,7 @@ gem "puma"
 gem "httparty"
 gem "barsoom_utils"
 gem "honeybadger"
-
-# FIXME: net-smtp, net-pop and net-imap was removed from ruby standard gems. Remove when https://github.com/mikel/mail/pull/1439 is resolved.
-# Also see: https://github.com/rails/rails/pull/42366
-gem "net-smtp", require: false
-gem "net-pop", require: false
-gem "net-imap", require: false
+gem "mail", ">= 2.8.0.rc1"
 
 # Assets
 gem "sassc-rails"

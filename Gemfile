@@ -25,7 +25,7 @@ gem "net-imap", require: false
 # Assets
 gem "sassc-rails"
 gem "bootstrap-sass"
-gem "uglifier"
+gem "terser"
 
 group :development, :test do
   gem "rspec-rails"

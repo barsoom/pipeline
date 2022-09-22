@@ -1,4 +1,4 @@
-Pipeline::Application.routes.draw do
+Rails.application.routes.draw do
   get "revision" => ->(_) { [ 200, {}, [ ENV.fetch("GIT_COMMIT") ] ] }
 
   namespace :api do

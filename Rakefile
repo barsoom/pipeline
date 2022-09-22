@@ -18,7 +18,7 @@ def load_rails_tasks_when_needed
 
   RailslessRakeTaskRunner.load_rails_when_needed_with(lambda {
     require File.expand_path("../config/application", __FILE__)
-    Pipeline::Application.load_tasks
+    Rails.application.load_tasks
   })
 end
 

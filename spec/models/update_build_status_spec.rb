@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UpdateBuildStatus do
+RSpec.describe UpdateBuildStatus do
   context "when there are no previous builds" do
     it "adds a build, a revision and a project" do
       update_with name: "pipeline_tests", repository: "git@example.com:user/bar.git"

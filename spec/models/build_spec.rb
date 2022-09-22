@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Build do
+RSpec.describe Build do
   it "requires a name" do
     build = FactoryBot.build(:build, name: nil)
     expect(build).not_to be_valid

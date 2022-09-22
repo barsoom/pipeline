@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ProjectStatusSerializer do
+RSpec.describe ProjectStatusSerializer do
   it "serializes the status of a project as a hash" do
     # Previous build
     update_with revision: "0000000000000000000000000000000000000000", name: "foo_tests", status: "successful", status_url: "url-for-rev-0"

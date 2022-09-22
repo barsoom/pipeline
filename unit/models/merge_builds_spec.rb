@@ -4,7 +4,7 @@ require "merge_builds"
 
 stub_constant :Build, OpenStruct
 
-describe MergeBuilds do
+RSpec.describe MergeBuilds do
   it "merges 'building' and anything to 'building'" do
     builds = [
       Build.new(name: "tests_0", status: "building"),

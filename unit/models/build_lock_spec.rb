@@ -1,7 +1,7 @@
 require "spec_helper"
 require "build_lock"
 
-describe BuildLock, "take" do
+RSpec.describe BuildLock, "take" do
   let(:redis) { double(:redis) }
   let(:expected_key) { "build_lock_for_e7f7aba1bf1f93975cc69900bff9a3ae9cdb34cb_foo_tests" }
 
@@ -28,7 +28,7 @@ describe BuildLock, "take" do
   end
 end
 
-describe BuildLock, "release" do
+RSpec.describe BuildLock, "release" do
   let(:redis) { double(:redis) }
   let(:expected_key) { "build_lock_for_e7f7aba1bf1f93975cc69900bff9a3ae9cdb34cb_foo_tests" }
 

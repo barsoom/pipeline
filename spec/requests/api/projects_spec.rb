@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "DELETE /api/projects", type: :request do
+RSpec.describe "DELETE /api/projects", type: :request do
   it "removes a project" do
     project1 = FactoryBot.create(:project, name: "foo")
     project2 = FactoryBot.create(:project, name: "bar")

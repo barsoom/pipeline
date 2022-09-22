@@ -7,7 +7,7 @@ require "active_support/core_ext"
 
 stub_constant :Build, OpenStruct
 
-describe BuildPresenter, "#list" do
+RSpec.describe BuildPresenter, "#list" do
   it "returns builds" do
     builds = [
       Build.new(name: "tests", status: "successful"),

@@ -1,7 +1,7 @@
 require "spec_helper"
 require "build_mapping"
 
-describe BuildMapping, ".build_list" do
+RSpec.describe BuildMapping, ".build_list" do
   it "builds a list of mappings based on text input" do
     mappings = BuildMapping.build_list("foo_tests=tests\r\nfoo_deploy=deploy\r\n")
     expect(mappings.size).to eq(2)

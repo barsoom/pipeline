@@ -9,6 +9,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.use_transactional_fixtures = true
   config.order = "random"
+  config.disable_monkey_patching!
 
   RSpec::Redis.setup(config)
 end

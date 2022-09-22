@@ -5,7 +5,7 @@ require "build_mapping"
 
 stub_class :Build, OpenStruct
 
-describe RevisionPresenter, "#name" do
+RSpec.describe RevisionPresenter, "#name" do
   it "is the first 5 characters" do
     revision = double(name: "00677457465544877dc2293f724009caa9da03a4")
     presenter = RevisionPresenter.new(revision)
@@ -13,7 +13,7 @@ describe RevisionPresenter, "#name" do
   end
 end
 
-describe RevisionPresenter, "#builds" do
+RSpec.describe RevisionPresenter, "#builds" do
   it "returns builds" do
     build = Build.new(name: "tests")
     revision = double(builds: [ build ], build_mappings: [])

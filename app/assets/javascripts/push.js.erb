@@ -1,4 +1,4 @@
-var scheme   = "<%= Rails.env.production? ? 'wss://' : 'ws://' %>";
+var scheme   = document.querySelector(".env-production") ? "wss://" : "ws://";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
 var lastPingTime = new Date();

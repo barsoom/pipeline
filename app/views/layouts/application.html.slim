@@ -6,7 +6,7 @@ html
   = javascript_include_tag "application"
   = csrf_meta_tags
 
-  body
+  body(class=(Rails.env.production? ? "env-production" : ""))
     .container
       nav.navbar.navbar-default
         .navbar-header

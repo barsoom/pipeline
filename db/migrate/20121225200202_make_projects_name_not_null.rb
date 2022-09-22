@@ -1,4 +1,4 @@
-class MakeProjectsNameNotNull < ActiveRecord::Migration
+class MakeProjectsNameNotNull < ActiveRecord::Migration[7.0]
   def up
     change_column :projects, :name, :string, null: false
   end

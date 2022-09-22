@@ -1,4 +1,4 @@
-class MakeBuildsColumnNotNull < ActiveRecord::Migration
+class MakeBuildsColumnNotNull < ActiveRecord::Migration[7.0]
   def up
     change_column :builds, :project_name, :string, null: false
     change_column :builds, :step_name, :string, null: false

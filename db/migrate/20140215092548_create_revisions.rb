@@ -1,4 +1,4 @@
-class CreateRevisions < ActiveRecord::Migration
+class CreateRevisions < ActiveRecord::Migration[7.0]
   def change
     create_table :revisions do |t|
       t.string :name, null: false

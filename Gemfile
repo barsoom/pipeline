@@ -33,3 +33,5 @@ group :test do
 end
 
 gem "jquery-rails"
+
+gem "importmap-rails", "~> 1.1"

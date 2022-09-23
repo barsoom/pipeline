@@ -4,7 +4,7 @@ html
     = action_cable_meta_tag
 
   = stylesheet_link_tag "application", media: "all"
-  = javascript_include_tag "application"
+  = javascript_importmap_tags
   = csrf_meta_tags
 
   body(class=(Rails.env.production? ? "env-production" : ""))

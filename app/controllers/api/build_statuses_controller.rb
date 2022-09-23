@@ -10,9 +10,13 @@ class Api::BuildStatusesController < ApiController
       params[:status_url],
     )
 
-    PushBackend.push({ project_id: project.id,
-      html: render_to_string(partial: "projects/project",
-                             locals: { project:, revision_count: ::ProjectsController::MAX_REVISIONS }), })
+    ActionCable.server.broadcast("projects", {
+      project_id: project.id,
+      html: render_to_string(
+        partial: "projects/project",
+        locals: { project:, revision_count: ::ProjectsController::MAX_REVISIONS }
+      )
+    })
 
     PostStatusToWebhook.call(project)
 

@@ -1,0 +1,14 @@
+development:
+  adapter: async
+
+test:
+  adapter: test
+
+production:
+  adapter: redis
+  <%
+    port = ENV["DEVBOX"] ? `service_port redis`.strip : 6379
+    url = URI.parse(ENV["REDISCLOUD_URL"] || "redis://localhost:#{port}")
+ %>
+  url: <%= url %>
+  channel_prefix: pipeline_production

@@ -31,8 +31,6 @@ group :test do
   gem "factory_bot_rails"
 end
 
-gem "jquery-rails"
-
 gem "importmap-rails", "~> 1.1"
 
 gem "pry", "~> 0.14.1"

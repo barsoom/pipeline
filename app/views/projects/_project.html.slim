@@ -4,7 +4,7 @@
     = ' | '
     = link_to("GitHub", project.github_url)
 .status
-  h1= link_to(project.name, project_path(id: project.id))
+  h1 = link_to(project.name, project_path(id: project.id))
   .revisions
     - project.latest_revisions(revision_count).each do |revision|
       .revision

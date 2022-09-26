@@ -14,12 +14,10 @@ class WebController < ApplicationController
   end
 
   def require_password
-    return unless Rails.env.production?
+    raise "Need WEB_PASSWORD configured in prod." if Rails.env.production? && !ENV["WEB_PASSWORD"]
 
-    raise "Need WEB_PASSWORD configured in prod." unless ENV["WEB_PASSWORD"]
-
-    if !session[:logged_in] && params[:pw] != ENV["WEB_PASSWORD"]
-      render text: "Authentication missing.", status: 401
+    if Rails.env.production? && !session[:logged_in] && params[:pw] != ENV["WEB_PASSWORD"]
+      render plain: "Authentication missing.", status: 401
     else
       session[:logged_in] = true
     end

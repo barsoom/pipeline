@@ -14,7 +14,7 @@ module ApplicationCable
     private
 
     def find_verified_user
-      if request.session.exists?
+      if request.session["logged_in"]
         OpenStruct.new(id: 123, name: "ActionCable for logged-in user")
       else
         reject_unauthorized_connection

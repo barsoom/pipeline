@@ -277,10 +277,10 @@ DEPENDENCIES
   factory_bot_rails
   honeybadger
   httparty
-  importmap-rails (~> 1.1)
+  importmap-rails
   mail (>= 2.8.0.rc1)
   pg
-  pry (~> 0.14.1)
+  pry
   puma
   rails (~> 7.0.4)
   redis

@@ -14,6 +14,7 @@ gem "puma"
 gem "httparty"
 gem "barsoom_utils"
 gem "honeybadger"
+gem "importmap-rails"
 gem "mail", ">= 2.8.0.rc1"
 
 # Assets
@@ -22,6 +23,7 @@ gem "bootstrap-sass"
 gem "terser"
 
 group :development, :test do
+  gem "pry"
   gem "rspec-rails"
   gem "rubocop" # See .rubocop.yml for configuration and docs.
 end
@@ -30,7 +32,3 @@ group :test do
   gem "capybara"
   gem "factory_bot_rails"
 end
-
-gem "importmap-rails", "~> 1.1"
-
-gem "pry", "~> 0.14.1"

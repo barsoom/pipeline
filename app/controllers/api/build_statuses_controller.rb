@@ -15,7 +15,7 @@ class Api::BuildStatusesController < ApiController
       html: render_to_string(
         partial: "projects/project",
         locals: { project:, revision_count: ::ProjectsController::MAX_REVISIONS },
-      )
+      ),
     })
 
     PostStatusToWebhook.call(project)

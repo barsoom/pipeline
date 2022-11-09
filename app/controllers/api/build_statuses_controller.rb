@@ -14,7 +14,7 @@ class Api::BuildStatusesController < ApiController
       project_id: project.id,
       html: render_to_string(
         partial: "projects/project",
-        locals: { project:, revision_count: ::ProjectsController::MAX_REVISIONS }
+        locals: { project:, revision_count: ::ProjectsController::MAX_REVISIONS },
       )
     })
 

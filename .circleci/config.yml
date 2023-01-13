@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.1.2-node # Keep in sync with Gemfile
+      - image: cimg/ruby:3.2.0-node # Keep in sync with Gemfile
         environment:
           - BUNDLE_PATH=vendor/bundle
 
@@ -43,7 +43,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:3.1  # At least one deploy script needs ruby
+      - image: cimg/ruby:3.2  # At least one deploy script needs ruby
 
     steps:
       - checkout

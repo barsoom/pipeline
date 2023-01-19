@@ -15,6 +15,10 @@ Each commit shows up as its own line, the newest at the top. Within each line bo
 
 The build names are links to the `status_url` passed in when reporting builds. At barsoom we pass in a link to the jenkins build result console. This way we can easily get to any build result of any recent revision.
 
+## Web UI
+
+Visit <https://ci-pipeline.herokuapp.com/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config.
+
 ## API
 
 The api token is set with the `API_TOKEN` environment variable.

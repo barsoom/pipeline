@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.1"  # NOTE: keep in sync with .circleci/config.yml
+ruby "3.2.2"  # NOTE: keep in sync with .circleci/config.yml
 
 gem "rails", "~> 7.0.4"  # LOCKED: It's Rails!
 

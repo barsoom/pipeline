@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.2.1-node # Keep in sync with Gemfile
+      - image: cimg/ruby:3.2.2-node # Keep in sync with Gemfile
         environment:
           - BUNDLE_PATH=vendor/bundle
 

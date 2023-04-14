@@ -17,13 +17,10 @@ class Project < ActiveRecord::Base
   end
 
   def github_url
-    if repository.to_s.include?("github.com")
-      match = repository.match(/github.com:(.*?)\./)
-      github_path = match && match[1]
-      "https://github.com/#{github_path}"
-    else
-      nil
-    end
+    github_path = repository.to_s[/github\.com:(.*?)\./, 1]
+    return nil unless github_path
+
+    "https://github.com/#{github_path}"
   end
 
   private

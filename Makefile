@@ -9,7 +9,7 @@ build_docker_image:
 	  --build-arg REVISION=$(REVISION) \
 	  --build-arg RUBY_VERSION=$(RUBY_VERSION) \
 	  --progress=plain \
-	  -t ci-pipeline .
+	  -t pipeline .
 
 run: build_docker_image
-	docker run -p 20465:20465 --env-file .env -it ci-pipeline $(COMMAND)
+	docker run -p 20465:20465 --env-file .env -it pipeline $(COMMAND)

@@ -81,10 +81,6 @@ workflows:
       - test
       - prepare_app_image:
           context: shared-config
-          filters:
-            branches:
-              only:
-                - master
       - deploy_to_production:
           context: shared-config
           requires:

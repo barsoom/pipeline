@@ -1,66 +1,95 @@
-version: 2
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.0.0 # https://circleci.com/developer/orbs/orb/circleci/ruby
+  heroku: circleci/heroku@2.0.0 # https://circleci.com/developer/orbs/orb/circleci/heroku
 
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.2.2 # Keep in sync with Gemfile
+      - image: cimg/ruby:3.2.2 # NOTE: Keep in sync with Gemfile. https://circleci.com/developer/images/image/cimg/ruby#image-tags
         environment:
-          - BUNDLE_PATH=vendor/bundle
-
-      - image: redis:6.2.6-alpine # Keep versions in sync with dev.yml
-      - image: postgres:14.7-alpine # Keep versions in sync with dev.yml
+          BUNDLE_PATH: vendor/bundle
+      - image: postgres:14.7-alpine # NOTE: Keep in sync with dev.yml
         environment:
-          - POSTGRES_USER=postgres
-          - POSTGRES_DB=pipeline_test
-          - POSTGRES_PASSWORD=password
-
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+    environment:
+      BUNDLE_PATH: vendor/bundle
     steps:
       - checkout
+      - ruby/install-deps
       - run:
-          name: "Configure Bundler"
-          command: gem install bundler -v $(grep -A1 "BUNDLED WITH" Gemfile.lock | tail -n1 | xargs)
-
-      # Bundle and cache gems for later builds
-      - restore_cache:
-          name: "Restoring gems cache"
-          key: pipeline-gems-{{ checksum "Gemfile.lock" }}
+          name: "Set up DB"
+          command: |
+            bundle exec rails db:setup db:migrate
       - run:
-          name: "Bundling gems"
-          command: bundle check || bundle install
-      - save_cache:
-          name: "Saving gems cache"
-          key: pipeline-gems-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+          name: "Run tests"
+          command: |
+            mkdir -p /tmp/test-results
+            script/ci/pipeline.sh tests "bundle exec rake"
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          destination: test-results
+          path: /tmp/test-results
 
-      - run:
-          name: "Preparing database"
-          command: bash script/ci/prepare_database.sh
-
-      - run:
-          name: "Running tests"
-          command: script/ci/pipeline.sh pipeline_tests "bundle exec rake"
-
-  deploy:
+  prepare_app_image:
+    environment:
+      APP_NAMES: |
+          ci-pipeline
+    resource_class: medium
     docker:
-      - image: cimg/ruby:3.2  # At least one deploy script needs ruby
-
+      - image: cimg/base:stable
     steps:
+      - heroku/install
       - checkout
+      - setup_remote_docker:
+          version: 20.10.18
+          docker_layer_caching: false
+
+      - run:
+          name: "Checking if we should wait on an older build or cancel redundant ones"
+          command: script/ci/wait_on_older_build_and_cancel_redundant_ones.sh
+
+      - run:
+          name: "Preparing app image"
+          command: |
+            script/ci/pipeline.sh prepare_image "script/ci/prepare_app_image.sh"
+
+
+  deploy_to_production:
+    resource_class: small
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - heroku/install
+      - checkout
+      - run:
+          name: "Checking if we should wait on an older build or cancel redundant ones"
+          command: script/ci/wait_on_older_build_and_cancel_redundant_ones.sh
       - run:
           name: "Deploying to production"
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              script/ci/pipeline.sh pipeline_deploy "script/ci/deploy.sh $HEROKU_APP_NAME"
-            fi
+            script/ci/pipeline.sh deploy_production "script/ci/deploy.sh ci-pipeline"
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - test:
+      - test
+      - prepare_app_image:
           context: shared-config
-      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_to_production:
           context: shared-config
           requires:
             - test
+            - prepare_app_image
+          filters:
+            branches:
+              only:
+                - master

@@ -1,5 +1,4 @@
 default: &default
-  # Vagrant development box support
   <% if ENV["DEVBOX"] %>
   username: postgres
   password: dev

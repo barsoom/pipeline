@@ -16,11 +16,11 @@ gem "barsoom_utils"
 gem "honeybadger"
 gem "importmap-rails"
 gem "mail", ">= 2.8.0.rc1"
+gem "tzinfo-data"
 
 # Assets
 gem "sassc-rails"
 gem "bootstrap-sass"
-gem "terser"
 
 group :development, :test do
   gem "pry"

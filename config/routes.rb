@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "revision" => ->(_) { [ 200, {}, [ ENV.fetch("GIT_COMMIT") ] ] }
+  get "revision" => ->(_) { [ 200, {}, [ File.exist?("build_from_revision") ? File.read("built_from_revision") : ENV.fetch("GIT_COMMIT") ] ] }
 
   namespace :api do
     resource :build_status, only: :create

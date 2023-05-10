@@ -17,7 +17,7 @@ The build names are links to the `status_url` passed in when reporting builds. A
 
 ## Web UI
 
-Visit <https://ci-pipeline.herokuapp.com/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config.
+Visit <https://ci-pipeline.herokuapp.com/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config: `h config:get WEB_PASSWORD -a ci-pipeline`
 
 ## API
 

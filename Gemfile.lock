@@ -78,7 +78,7 @@ GEM
     attr_extras (7.1.0)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
-    barsoom_utils (0.1.1.39)
+    barsoom_utils (0.1.1.40)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)

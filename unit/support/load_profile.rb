@@ -4,9 +4,9 @@ if ENV["LOAD_PROFILE"]
   puts "profiling enabled."
   module Kernel
     class ProfiledMethod
-      def initialize(method, overriden_method, *opts)
+      def initialize(method, overridden_method, *opts)
         @method = method
-        @overriden_method = overriden_method
+        @overridden_method = overridden_method
         @opts = opts
       end
 
@@ -18,27 +18,27 @@ if ENV["LOAD_PROFILE"]
 
       private
 
-      class InvokationResult < Struct.new(:elapsed_time, :return_value)
+      class InvocationResult < Struct.new(:elapsed_time, :return_value)
         def slow?
           elapsed_time > SLOW
         end
       end
 
       def invoke_method
-        send(overriden_method, *opts)
+        send(overridden_method, *opts)
       end
 
       def measure_time
         start_time = Time.now
         ret = yield
-        InvokationResult.new(Time.now - start_time, ret)
+        InvocationResult.new(Time.now - start_time, ret)
       end
 
       def print_slow_time(result)
         puts "Slow #{method}: #{opts.first} #{(result.elapsed_time * 1000.0).to_i} ms"
       end
 
-      attr_reader :method, :overriden_method, :opts
+      attr_reader :method, :overridden_method, :opts
     end
 
     [ :require, :load ].each do |method|

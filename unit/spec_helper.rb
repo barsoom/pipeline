@@ -11,6 +11,4 @@ Dir[File.join(RAILS_ROOT, "spec/support/shared_examples/*.rb")].each { |f| requi
 
 require "attr_extras"
 
-RSpec.configure do |config|
-  config.disable_monkey_patching!
-end
+RSpec.configure(&:disable_monkey_patching!)

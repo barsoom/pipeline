@@ -78,7 +78,8 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - test
+      - test:
+          context: shared-config
       - prepare_app_image:
           context: shared-config
       - deploy_to_production:

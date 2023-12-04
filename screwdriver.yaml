@@ -1,7 +1,7 @@
 jobs:
-    main:
-      image: ruby:3.1.2
-        requires: [~pr, ~commit]
-        steps:
-            - bundle
-            - bundle exec rake spec
+  main:
+    image: ruby:3.1.2
+    requires: [~pr, ~commit]
+    steps:
+      - bundle
+      - bundle exec rake spec

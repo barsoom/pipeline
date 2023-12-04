@@ -1,12 +1,7 @@
 jobs:
     main:
-        image: node:14
+      image: ruby:3.1.2
         requires: [~pr, ~commit]
         steps:
-            - echo: echo hi
-
-    second:
-        image: node:14
-        requires: [main]
-        steps:
-            - echo: echo bye
+            - bundle
+            - bundle exec rake spec

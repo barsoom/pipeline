@@ -1,13 +1,13 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@2.0.0 # https://circleci.com/developer/orbs/orb/circleci/ruby
+  ruby: circleci/ruby@2.1.1 # https://circleci.com/developer/orbs/orb/circleci/ruby
   heroku: circleci/heroku@2.0.0 # https://circleci.com/developer/orbs/orb/circleci/heroku
 
 jobs:
   test:
     docker:
-      - image: cimg/ruby:3.2.2 # NOTE: Keep in sync with Gemfile. https://circleci.com/developer/images/image/cimg/ruby#image-tags
+      - image: cimg/ruby:3.2.3 # NOTE: Keep in sync with Gemfile. https://circleci.com/developer/images/image/cimg/ruby#image-tags
         environment:
           BUNDLE_PATH: vendor/bundle
       - image: redis:6.2.6-alpine # NOTE: Keep in sync with dev.yml

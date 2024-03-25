@@ -5,13 +5,16 @@ FROM ruby:${RUBY_VERSION}-alpine AS build
 RUN adduser -S -h /app -u 10000 app
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./
+ENV BUNDLE_IGNORE_FUNDING_REQUESTS=yes \
+    BUNDLE_IGNORE_MESSAGES=yes \
+    RAILS_ENV=production \
+    SECRET_KEY_BASE=does_not_matter_here
 RUN apk --no-cache add --virtual build-dependencies build-base git postgresql-dev \
     && gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" \
     && bundle config set --local deployment 'true' \
     && bundle config set --local without 'development test' \
     && bundle install --jobs "$(nproc)"
 COPY --chown=app:nogroup . .
-ENV RAILS_ENV=production SECRET_KEY_BASE=does_not_matter_here
 RUN bundle exec rake assets:precompile
 RUN rm -rf /app/tmp/cache \
     && find . -type d -name ".git" -exec rm -rf {} + \

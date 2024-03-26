@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.3"  # NOTE: keep in sync with .circleci/config.yml
+ruby file: ".ruby-version"
 
 gem "rails", "~> 7.0.4"  # LOCKED: It's Rails!
 

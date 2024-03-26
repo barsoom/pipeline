@@ -1,5 +1,5 @@
 COMMAND ?= `grep 'web' Procfile | cut -d ':' -f2`
-RUBY_VERSION ?= `grep 'ruby "' Gemfile | cut -d '"' -f2`
+RUBY_VERSION ?= `cat .ruby-version`
 REVISION ?= `git rev-parse HEAD`
 
 .PHONY: build_docker_image run

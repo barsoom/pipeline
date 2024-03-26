@@ -20,7 +20,7 @@ test:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  <% if ENV["CIRCLECI"] %>
+  <% if ENV["CI"] %>
   username: postgres
   host: localhost
   <% end %>

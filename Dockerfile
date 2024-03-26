@@ -3,7 +3,7 @@ ARG RUBY_VERSION
 FROM ruby:${RUBY_VERSION}-alpine AS build
 RUN adduser -S -h /app -u 10000 app
 WORKDIR /app
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock .ruby-version ./
 ENV BUNDLE_IGNORE_FUNDING_REQUESTS=yes \
     BUNDLE_IGNORE_MESSAGES=yes \
     RAILS_ENV=production \

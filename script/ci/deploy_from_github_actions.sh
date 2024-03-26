@@ -4,11 +4,10 @@ set -e
 
 app_name=$1
 revision=$2
+heroku_token=$HEROKU_REGISTRY_TOKEN
 
 # Deploy
 _main () {
-  heroku_token=$(heroku auth:token 2> /dev/null)
-
   _deploy_to_heroku
   _ensure_new_revision_is_running
 }

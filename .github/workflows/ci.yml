@@ -69,6 +69,23 @@ jobs:
           registry: registry.heroku.com
           username: ${{ secrets.HEROKU_REGISTRY_USERNAME }}
           password: ${{ secrets.HEROKU_REGISTRY_TOKEN }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ECR_ACCESS_ROLE_ARN }}
+      - name: Log into AWS ECR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      - name: Determine image tag
+        id: tag
+        run: |
+          if [[ "${{ github.ref_name }}" == "master" ]]; then
+            echo "image_tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "image_tag=${{ github.ref_name }}-sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
       - name: Build and push Docker image with revision and latest tags
         uses: docker/build-push-action@v5
         with:
@@ -78,6 +95,7 @@ jobs:
           context: .
           push: true
           tags: |
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:${{ steps.tag.outputs.image_tag }}
             registry.heroku.com/ci-pipeline/app:${{ github.sha }}
 
   deploy:
@@ -114,7 +132,7 @@ jobs:
 
       - name: Update values.yaml with new image tag
         run: |
-          NEW_TAG="registry.heroku.com/ci-pipeline/app:${{ github.sha }}"
+          NEW_TAG="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}"
           sed -i "s|image:.*|image: $NEW_TAG|g" stack/applications/pipeline/values.yaml
 
       - name: Deploy to Stack

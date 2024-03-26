@@ -1,5 +1,4 @@
 ARG RUBY_VERSION
-ARG NODE_VERSION
 
 FROM ruby:${RUBY_VERSION}-alpine AS build
 RUN adduser -S -h /app -u 10000 app

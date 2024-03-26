@@ -3,8 +3,8 @@ require "spec_helper"
 RSpec.describe "Projects", type: :feature do
   describe "Removing projects" do
     it "can be done" do
-      project = Project.new(name: "the_app")
-      project.save!
+      project = Project.create!(name: "the_app")
+
       visit root_path
 
       allow(PostStatusToWebhook).to receive(:call)
@@ -24,8 +24,8 @@ RSpec.describe "Projects", type: :feature do
 
   describe "Editing projects" do
     it "when successful" do
-      project = Project.new(name: "the_app")
-      project.save!
+      project = Project.create!(name: "the_app")
+
       visit root_path
 
       within("#project_#{project.id}") do
@@ -41,8 +41,8 @@ RSpec.describe "Projects", type: :feature do
     end
 
     it "when there are validation errors" do
-      project = Project.new(name: "the_app")
-      project.save!
+      project = Project.create!(name: "the_app")
+
       @projects = Project.all_sorted
       visit edit_project_path(project)
 

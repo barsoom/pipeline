@@ -124,7 +124,6 @@ jobs:
         with:
           repository: barsoom/stack
           path: stack
-          ref: main
           token: ${{ secrets.STACK_TOKEN }}
           sparse-checkout: |
             applications/pipeline/values.yaml

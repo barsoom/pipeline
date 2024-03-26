@@ -9,11 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       default-branch: ${{ steps.default-branch.outputs.branch }}
+      image-tag: ${{ steps.tag.outputs.image_tag }}
     steps:
       - name: Determine default Git branch name
         id: default-branch
         run: |
           echo "branch=$(sed -e 's/^.*\///' < .git/refs/remotes/origin/HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Determine image tag
+        id: tag
+        run: |
+          if [[ "${{ github.ref_name }}" == "{{ steps.default-branch.outputs.branch }}" ]]; then
+            echo "image_tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "image_tag=${{ github.ref_name }}-sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
 
   test:
     needs:
@@ -57,6 +66,8 @@ jobs:
           retention-days: 5
 
   prepare-app-image:
+    needs:
+      - prepare-to-run
     permissions:
       id-token: write
       contents: read
@@ -78,14 +89,6 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-      - name: Determine image tag
-        id: tag
-        run: |
-          if [[ "${{ github.ref_name }}" == "master" ]]; then
-            echo "image_tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "image_tag=${{ github.ref_name }}-sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          fi
       - name: Build and push Docker image with revision and latest tags
         uses: docker/build-push-action@v5
         with:
@@ -95,13 +98,14 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:${{ steps.tag.outputs.image_tag }}
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:${{ needs.prepare-to-run.outputs.image-tag }}
             registry.heroku.com/ci-pipeline/app:${{ github.sha }}
 
   deploy:
     if: github.ref == 'refs/heads/${{ needs.prepare-to-run.outputs.default-branch }}'
     needs:
       - test
+      - prepare-to-run
       - prepare-app-image
     concurrency:
       group: deploy-to-production-${{ github.ref }}

@@ -34,7 +34,14 @@ _main () {
 }
 
 _post_build_status () {
-  curl --request POST "$PIPELINE_BASE_URL/api/build_status" --data "token=$PIPELINE_API_TOKEN&name=$build_name&repository=git@github.com:$CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}.git&revision=$CIRCLE_SHA1&status_url=https://circleci.com/gh/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM&status=$1"
+  local status_url="https://circleci.com/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_BUILD_NUM}&status=$1"
+  local repository="git@github.com:${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git"
+  local revision="${CIRCLE_SHA1}"
+
+  curl --no-progress-meter \
+    --request POST \
+    "$PIPELINE_BASE_URL/api/build_status" \
+    --data "token=$PIPELINE_API_TOKEN&name=${build_name}&repository=${repository}&revision=${revision}&status_url=${status_url}"
 }
 
 _main

@@ -26,14 +26,12 @@ jobs:
             bundle exec rails db:setup db:migrate
       - run:
           name: "Run tests"
-          command: |
-            mkdir -p /tmp/test-results
-            script/ci/pipeline.sh tests "bundle exec rake"
+          command: script/ci/pipeline.sh tests "bundle exec rake"
       - store_test_results:
-          path: /tmp/test-results
+          path: tmp/test-results
       - store_artifacts:
           destination: test-results
-          path: /tmp/test-results
+          path: tmp/test-results
 
   prepare_app_image:
     environment:

@@ -43,7 +43,6 @@ RSpec.describe "Projects", type: :feature do
     it "when there are validation errors" do
       project = Project.create!(name: "the_app")
 
-      @projects = Project.all_sorted
       visit edit_project_path(project)
 
       fill_in "Name", with: ""

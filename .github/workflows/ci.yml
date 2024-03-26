@@ -1,0 +1,126 @@
+name: CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  prepare-to-run:
+    runs-on: ubuntu-latest
+    outputs:
+      default-branch: ${{ steps.default-branch.outputs.branch }}
+    steps:
+      - name: Find default branch
+        id: default-branch
+        run: |
+          echo "branch=$(sed -e 's/^.*\///' < .git/refs/remotes/origin/HEAD)" >> "$GITHUB_OUTPUT"
+
+  test:
+    needs:
+      - prepare-to-run
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_PATH: vendor/bundle
+      RAILS_ENV: test
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:6.2.6-alpine
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          # ruby-version is read from .ruby-version file.
+          bundler-cache: true  # runs 'bundle install' and caches installed gems automatically
+      - run: bundle exec rails db:setup db:migrate
+      - name: Run tests
+        run: script/ci/pipeline.sh tests "bundle exec rake"
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          path: tmp/test-results
+          retention-days: 5
+
+  prepare-app-image:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log into Heroku Docker registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.heroku.com
+          username: ${{ secrets.HEROKU_REGISTRY_USERNAME }}
+          password: ${{ secrets.HEROKU_REGISTRY_TOKEN }}
+      - name: Build and push Docker image with revision and latest tags
+        uses: docker/build-push-action@v5
+        with:
+          build-args: |
+            RUBY_VERSION=3.2.3
+            REVISION=${{ github.sha }}
+          context: .
+          push: true
+          tags: |
+            registry.heroku.com/ci-pipeline/app:${{ github.sha }}
+
+  deploy:
+    if: github.ref == 'refs/heads/${{ needs.prepare-to-run.outputs.default-branch }}'
+    needs:
+      - test
+      - prepare-app-image
+    concurrency:
+      group: deploy-to-production-${{ github.ref }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Pipeline repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.prepare-to-run.outputs.default-branch }}
+          fetch-depth: 0
+
+      - name: Checkout stack repository
+        uses: actions/checkout@v4
+        with:
+          repository: barsoom/stack
+          path: stack
+          ref: main
+          token: ${{ secrets.STACK_TOKEN }}
+          sparse-checkout: |
+            applications/pipeline/values.yaml
+            script/ci/deploy.sh
+            script/ci/ensure_revision_is_newer_than_deployed_revision.sh
+
+      - name: Ensure revision is newer than deployed revision
+        run: stack/script/ci/ensure_revision_is_newer_than_deployed_revision.sh
+
+      - name: Update values.yaml with new image tag
+        run: |
+          NEW_TAG="registry.heroku.com/ci-pipeline/app:${{ github.sha }}"
+          sed -i "s|image:.*|image: $NEW_TAG|g" stack/applications/pipeline/values.yaml
+
+      - name: Deploy to Stack
+        run: stack/script/ci/deploy.sh
+
+      - name: Deploy to Heroku
+        env:
+          HEROKU_REGISTRY_TOKEN: ${{ secrets.HEROKU_REGISTRY_TOKEN }}
+        run: script/ci/pipeline.sh deploy_production "script/ci/deploy_from_github_actions.sh pipeline ${{ github.sha }}"

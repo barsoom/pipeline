@@ -9,7 +9,9 @@ begin
     t.pattern = "unit/**/*_spec.rb"
   end
 
-  task default: %i[ spec:unit spec ]
+  directory "tmp/test-results"
+
+  task default: [ "tmp/test-results", "spec:unit", "spec" ]
 rescue LoadError
   task :default do
     puts "No RSpec found, no test tasks defined. This is normal in production."

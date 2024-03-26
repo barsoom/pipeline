@@ -14,6 +14,7 @@ _main () {
 
 _deploy_to_heroku () {
   curl -X PATCH "https://api.heroku.com/apps/$app_name/formation" \
+    --no-progress-meter \
     -H "Content-Type: application/json" \
     -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
     -H "Authorization: Bearer $heroku_token" \

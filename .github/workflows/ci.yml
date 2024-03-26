@@ -144,4 +144,4 @@ jobs:
       - name: Deploy to Heroku
         env:
           HEROKU_REGISTRY_TOKEN: ${{ secrets.HEROKU_REGISTRY_TOKEN }}
-        run: script/ci/pipeline.sh deploy_production "script/ci/deploy_from_github_actions.sh pipeline ${{ github.sha }}"
+        run: script/ci/pipeline.sh deploy_production "script/ci/deploy_from_github_actions.sh ci-pipeline ${{ github.sha }}"

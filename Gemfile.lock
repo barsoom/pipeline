@@ -190,7 +190,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
-    rake (13.1.0)
+    rake (13.2.0)
     redis (5.1.0)
       redis-client (>= 0.17.0)
     redis-client (0.21.1)

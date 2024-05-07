@@ -79,7 +79,7 @@ GEM
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     barsoom_utils (0.2.0.44)
-    bigdecimal (3.1.7)
+    bigdecimal (3.1.8)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -115,7 +115,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)

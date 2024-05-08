@@ -89,11 +89,15 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      - name: Determine ruby version
+        id: ruby-version
+        run: |
+          echo "ruby_version=$(cat .ruby-version)" >> "$GITHUB_OUTPUT"
       - name: Build and push Docker image with revision and latest tags
         uses: docker/build-push-action@v5
         with:
           build-args: |
-            RUBY_VERSION=3.2.3
+            RUBY_VERSION=${{ steps.ruby-version.outputs.ruby_version }}
             REVISION=${{ github.sha }}
           context: .
           push: true

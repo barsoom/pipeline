@@ -79,6 +79,7 @@ GEM
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
     barsoom_utils (0.2.0.45)
+    base64 (0.2.0)
     bigdecimal (3.1.8)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -138,6 +139,7 @@ GEM
     minitest (5.23.1)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    mutex_m (0.2.0)
     net-imap (0.4.12)
       date
       net-protocol
@@ -276,6 +278,7 @@ PLATFORMS
 DEPENDENCIES
   attr_extras
   barsoom_utils
+  base64
   bootstrap-sass
   bootstrap_forms!
   capybara
@@ -284,6 +287,7 @@ DEPENDENCIES
   httparty
   importmap-rails
   mail (>= 2.8.0.rc1)
+  mutex_m
   pg
   pry
   puma

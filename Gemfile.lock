@@ -109,6 +109,7 @@ GEM
       factory_bot (~> 6.4)
       railties (>= 5.0.0)
     ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
     honeybadger (5.11.1)
@@ -273,7 +274,8 @@ GEM
     zeitwerk (2.6.15)
 
 PLATFORMS
-  x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   attr_extras

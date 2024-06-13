@@ -14,11 +14,12 @@ jobs:
       - name: Determine default Git branch name
         id: default-branch
         run: |
-          echo "branch=$(sed -e 's/^.*\///' < .git/refs/remotes/origin/HEAD)" >> "$GITHUB_OUTPUT"
+          default_branch=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} | jq -r .default_branch)
+          echo "branch=$default_branch" >> "$GITHUB_OUTPUT"
       - name: Determine image tag
         id: tag
         run: |
-          if [[ "${{ github.ref_name }}" == "{{ steps.default-branch.outputs.branch }}" ]]; then
+          if [[ "${{ github.ref_name }}" == "${{ steps.default-branch.outputs.branch }}" ]]; then
             echo "image_tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
           else
             echo "image_tag=${{ github.ref_name }}-sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"

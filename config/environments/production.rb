@@ -3,8 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  production_host = "ci-pipeline.herokuapp.com"
-  config.hosts << production_host
+  production_hosts = [ "ci-pipeline.herokuapp.com", "pipeline.auctionet.dev", /10\.\d{1,3}\.\d{1,3}\.\d{1,3}/ ]
+  config.hosts += production_hosts
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -44,7 +44,7 @@ Rails.application.configure do
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
-  config.action_cable.allowed_request_origins = [ production_host ]
+  config.action_cable.allowed_request_origins = [ production_hosts ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true

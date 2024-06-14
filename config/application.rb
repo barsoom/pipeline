@@ -38,6 +38,13 @@ module Pipeline
     default_key = dev_or_test ? "test" : nil
     config.secret_key_base = ENV["SECRET_KEY_BASE"] || default_key
 
+    config.middleware.insert_after ActionDispatch::Session::CookieStore, JwtAuthentication, ignore: [
+      { method: "GET",  path: "/revision" },
+      { method: "GET",  path: "/api/*" },
+      { method: "POST",  path: "/api/*" },
+      { method: "DELETE",  path: "/api/*" },
+    ]
+
     unless config.secret_key_base
       puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
 

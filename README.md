@@ -109,6 +109,8 @@ To run the app in production you need to set a few envs.
     heroku config:set WEB_PASSWORD=your-password-here
     heroku config:set SECRET_KEY_BASE=$(rake secret)
 
+Optionally you can use SSO instead of WEB_PASSWORD via the use of [jwt_authentication](https://github.com/barsoom/jwt_authentication), see that gem for docs.
+
 By default builds will go from "building" to "pending" after 60 minutes
 as some builds may have been killed in a bad way where the final status
 was never reported. You can change this time like this:
@@ -122,6 +124,9 @@ You can limit the amount of revisions, to keep the database size manageable:
 `REVISIONS_TO_KEEP` defaults to 500.
 
 ## Running the tests
+
+    ENV["HTTP_USER"] = nil
+    ENV["HTTP_PASSWORD"] = nil
 
 You need postgres installed.
 

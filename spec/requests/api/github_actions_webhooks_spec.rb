@@ -8,8 +8,8 @@ RSpec.describe "POST /api/github_actions_webhook", type: :request do
         name: "foo_tests",
         head_sha: "440f78f6de0c71e073707d9435db89f8e5390a59",
         status: "success",
-        html_url: "http://example.com/status-for-job/foo_tests"
-      }
+        html_url: "http://example.com/status-for-job/foo_tests",
+      },
     }
   }
 

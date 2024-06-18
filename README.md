@@ -22,7 +22,11 @@ Visit <https://ci-pipeline.herokuapp.com/?pw=PASSWORD>, finding the actual `PASS
 
 The api token is set with the `API_TOKEN` environment variable.
 
-### Build status API
+### Alternative 1) Github Actions Webhooks API
+
+Add a webhook to the project on github, set Payload URL to `https://example.com/api/github_actions_webhook?token=your-token` and content type to `application/json` and select the "Workflow jobs" event.
+
+### Alternative 2) Use the build status API
 
 [Example client for CircleCI](examples/build_reporting_client_for_circleci.sh) (just a wrapper around curl, can easily be adapted for other CI tools as well).
 

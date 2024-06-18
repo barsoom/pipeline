@@ -4,6 +4,7 @@ RSpec.describe "POST /api/github_actions_webhook", type: :request do
   before do
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with("GITHUB_WEBHOOK_SECRET").and_return("secret")
+    allow(Rack::Utils).to receive(:secure_compare).with(start_with("sha256="), "sha256=secret").and_return(true)
   end
 
   let(:attributes) {
@@ -19,12 +20,17 @@ RSpec.describe "POST /api/github_actions_webhook", type: :request do
   }
 
   it "adds or updates build status" do
-    allow(Rack::Utils).to receive(:secure_compare).with(start_with("sha256="), "sha256=secret").and_return(true)
-
     post "/api/github_actions_webhook", headers: { "X-Hub-Signature-256" => "sha256=secret" }, params: attributes
 
     expect(response).to be_successful
     expect(Build.last.status).to eq("successful")
+  end
+
+  it "ignores requests without a workflow job" do
+    post "/api/github_actions_webhook", headers: { "X-Hub-Signature-256" => "sha256=secret" }, params: { zen: "something else" }
+
+    expect(response).to be_successful
+    expect(Build.all).to be_empty
   end
 
   it "fails when the api token is wrong" do

@@ -4,6 +4,11 @@ class Api::GithubActionsWebhooksController < ApiController
   def create
     workflow_job = params[:workflow_job]
 
+    unless workflow_job
+      render json: {}
+      return
+    end
+
     project = UpdateBuildStatus.call(
       workflow_job[:name],
       params[:repository][:ssh_url],

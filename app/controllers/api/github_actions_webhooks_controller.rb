@@ -13,7 +13,7 @@ class Api::GithubActionsWebhooksController < ApiController
       workflow_job[:name],
       params[:repository][:ssh_url],
       workflow_job[:head_sha],
-      convert_gha_status_to_pipeline_status(workflow_job[:status]),
+      convert_gha_status_to_pipeline_status(workflow_job[:status], workflow_job[:conclusion]),
       workflow_job[:html_url],
     )
 
@@ -32,16 +32,17 @@ class Api::GithubActionsWebhooksController < ApiController
 
   private
 
-  def convert_gha_status_to_pipeline_status(status)
-    # "can be one of: completed, action_required, cancelled, failure, neutral, skipped, stale, success, timed_out, in_progress, queued, requested, waiting, pending"
-    case status
-    when "completed", "success"
-      "successful"
-    when "failure", "cancelled", "timed_out", "skipped", "stale"
-      "failed"
-    else
-      "building"
-    end
+  def convert_gha_status_to_pipeline_status(status, conclusion)
+    # conclusion can be one of: success, failure, nil
+    # status can be one of: completed, action_required, cancelled, failure, neutral, skipped, stale, success, timed_out, in_progress, queued, requested, waiting, pending
+
+    return "successful" if conclusion == "success"
+    return "failed" if conclusion == "failure"
+
+    return "building" if status == "in_progress"
+    return "pending" if status == "queued"
+
+    "pending"
   end
 
   def check_token

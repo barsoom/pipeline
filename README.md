@@ -24,7 +24,7 @@ The api token is set with the `API_TOKEN` environment variable.
 
 ### Alternative 1) Github Actions Webhooks API
 
-Add a webhook to the project on github, set Payload URL to `https://example.com/api/github_actions_webhook?token=your-token` and content type to `application/json` and select the "Workflow jobs" event.
+Add a webhook to the project on github, set Payload URL to `https://example.com/api/github_actions_webhook` and content type to `application/json` and select the "Workflow jobs" event. The secret should be kept in sync with the `GITHUB_WEBHOOK_SECRET` environment variable.
 
 ### Alternative 2) Use the build status API
 

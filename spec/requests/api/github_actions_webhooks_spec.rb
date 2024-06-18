@@ -1,6 +1,11 @@
 require "spec_helper"
 
 RSpec.describe "POST /api/github_actions_webhook", type: :request do
+  before do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with("GITHUB_WEBHOOK_SECRET").and_return("secret")
+  end
+
   let(:attributes) {
     {
       repository: { ssh_url: "git@example.com:user/foo.git" },
@@ -14,14 +19,19 @@ RSpec.describe "POST /api/github_actions_webhook", type: :request do
   }
 
   it "adds or updates build status" do
-    allow(App).to receive(:api_token).and_return("secret")
-    post "/api/github_actions_webhook", params: attributes.merge(token: "secret")
+    allow(Rack::Utils).to receive(:secure_compare).with(start_with("sha256="), "sha256=secret").and_return(true)
+
+    post "/api/github_actions_webhook", headers: { "X-Hub-Signature-256" => "sha256=secret" }, params: attributes
+
     expect(response).to be_successful
     expect(Build.last.status).to eq("successful")
   end
 
   it "fails when the api token is wrong" do
-    post "/api/github_actions_webhook", params: attributes.merge(token: "secret")
+    allow(Rack::Utils).to receive(:secure_compare).with(start_with("sha256="), "sha256=wrong-secret").and_return(false)
+
+    post "/api/github_actions_webhook", headers: { "X-Hub-Signature-256" => "sha256=wrong-secret" }, params: attributes
+
     expect(response.code).to eq("401")
     expect(Build.all).to be_empty
   end

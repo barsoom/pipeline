@@ -9,7 +9,7 @@ class Api::GithubActionsWebhooksController < ApiController
       params[:repository][:ssh_url],
       workflow_job[:head_sha],
       convert_gha_status_to_pipeline_status(workflow_job[:status]),
-      workflow_job[:html_url]
+      workflow_job[:html_url],
     )
 
     ActionCable.server.broadcast("projects", {
@@ -25,6 +25,8 @@ class Api::GithubActionsWebhooksController < ApiController
     render json: {}
   end
 
+  private
+
   def convert_gha_status_to_pipeline_status(status)
     # "can be one of: completed, action_required, cancelled, failure, neutral, skipped, stale, success, timed_out, in_progress, queued, requested, waiting, pending"
     case status
@@ -35,5 +37,12 @@ class Api::GithubActionsWebhooksController < ApiController
     else
       "building"
     end
+  end
+
+  def check_token
+    signature = "sha256=" + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new("sha256"), ENV["GITHUB_WEBHOOK_SECRET"], request.body.read)
+    return if Rack::Utils.secure_compare(signature, request.headers["X-Hub-Signature-256"])
+
+    render body: nil, status: :unauthorized
   end
 end

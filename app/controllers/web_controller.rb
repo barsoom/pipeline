@@ -15,7 +15,10 @@ class WebController < ApplicationController
 
   def require_password
     # authenticated using jwt_authentication gem
-    return if ENV["JWT_KEY"] && session[:jwt_user_data]
+    if ENV["JWT_KEY"] && session[:jwt_user_data]
+      session[:logged_in] = true
+      return
+    end
 
     raise "Need WEB_PASSWORD configured in prod." if Rails.env.production? && !ENV["WEB_PASSWORD"]
 

@@ -129,9 +129,6 @@ You can limit the amount of revisions, to keep the database size manageable:
 
 ## Running the tests
 
-    ENV["HTTP_USER"] = nil
-    ENV["HTTP_PASSWORD"] = nil
-
 You need postgres installed.
 
     script/bootstrap

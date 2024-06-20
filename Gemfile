@@ -37,5 +37,3 @@ group :test do
   gem "capybara"
   gem "factory_bot_rails"
 end
-
-

@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/barsoom/jwt_authentication.git
-  revision: c20e3f8adaadb5d5849d0ae738459120341838e7
+  revision: 2f14676d6cb358443d810aa8691b5f323dc39cde
   specs:
     jwt_authentication (0.1.1)
       attr_extras
@@ -81,8 +81,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     attr_extras (7.1.0)
     autoprefixer-rails (10.4.16.0)
@@ -154,10 +154,11 @@ GEM
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    net-imap (0.4.14)
+    net-imap (0.4.13)
       date
       net-protocol
     net-pop (0.1.2)
+      net-protocol
     net-protocol (0.2.2)
       timeout
     net-smtp (0.5.0)
@@ -173,7 +174,7 @@ GEM
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (6.0.0)
+    public_suffix (5.1.1)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.8.0)
@@ -215,7 +216,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    rexml (3.3.1)
+    rexml (3.3.0)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)

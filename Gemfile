@@ -4,28 +4,25 @@ ruby file: ".ruby-version"
 
 gem "rails", "~> 7.0.4"  # LOCKED: It's Rails!
 
-gem "pg"
-
-gem "slim"
 gem "attr_extras"
-gem "bootstrap_forms", github: "barsoom/bootstrap_forms"
-gem "redis"
-gem "puma"
-gem "httparty"
 gem "barsoom_utils"
+gem "base64" # Added to avoid: warning: base64 was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add base64 to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add base64 into its gemspec.
+gem "bootstrap-sass" # Assets
+gem "bootstrap_forms", github: "barsoom/bootstrap_forms"
+gem "drb" # Added to avoid warning: drb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add drb to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add drb into its gemspec.
 gem "honeybadger"
+gem "httparty"
 gem "importmap-rails"
 gem "jwt_authentication", github: "barsoom/jwt_authentication"
 gem "mail", ">= 2.8.0.rc1"
-gem "tzinfo-data"
 gem "mutex_m" # Added to avoid: warning: mutex_m was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add mutex_m to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add mutex_m into its gemspec.
-gem "base64" # Added to avoid: warning: base64 was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add base64 to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add base64 into its gemspec.
-gem "drb" # Added to avoid warning: drb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add drb to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add drb into its gemspec.
 gem "net-pop", github: "ruby/net-pop" # FIXME: Bug introduced by 3.3.3. Remove next time ruby is updated. https://github.com/ruby/ruby/pull/11006
-
-# Assets
-gem "sassc-rails"
-gem "bootstrap-sass"
+gem "pg"
+gem "puma"
+gem "redis"
+gem "sassc-rails" # Assets
+gem "slim"
+gem "tzinfo-data"
 
 group :development, :test do
   gem "pry"

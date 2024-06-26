@@ -21,6 +21,7 @@ gem "tzinfo-data"
 gem "mutex_m" # Added to avoid: warning: mutex_m was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add mutex_m to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add mutex_m into its gemspec.
 gem "base64" # Added to avoid: warning: base64 was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add base64 to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add base64 into its gemspec.
 gem "drb" # Added to avoid warning: drb was loaded from the standard library, but will no longer be part of the default gems since Ruby 3.4.0. Add drb to your Gemfile or gemspec. Also contact author of activesupport-7.0.8.4 to add drb into its gemspec.
+gem "net-pop", github: "ruby/net-pop" # FIXME: Bug introduced by 3.3.3. Remove next time ruby is updated. https://github.com/ruby/ruby/pull/11006
 
 # Assets
 gem "sassc-rails"

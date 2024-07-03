@@ -59,7 +59,7 @@ jobs:
           bundler-cache: true  # runs 'bundle install' and caches installed gems automatically
       - run: bundle exec rails db:setup db:migrate
       - name: Run tests
-        run: script/ci/pipeline.sh tests "bundle exec rake"
+        run: bundle exec rake
       - name: Upload test results
         uses: actions/upload-artifact@v4
         with:

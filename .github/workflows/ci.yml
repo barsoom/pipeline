@@ -86,7 +86,7 @@ jobs:
             RUBY_VERSION=${{ steps.ruby-version.outputs.ruby_version }}
             REVISION=${{ github.sha }}
           context: .
-          push: true
+          push: ${{ github.ref == github.event.repository.default_branch }}
           tags: |
             ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}
 

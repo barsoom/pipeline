@@ -1,5 +1,5 @@
 --color
 <% if ENV["CI"] %>
 --format RspecJunitFormatter
---out /tmp/test-results/rspec.xml
+--out tmp/test-results/rspec.xml
 <% end %>

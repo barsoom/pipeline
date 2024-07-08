@@ -9,21 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       default-branch: ${{ steps.default-branch.outputs.branch }}
-      image-tag: ${{ steps.tag.outputs.image_tag }}
     steps:
       - name: Determine default Git branch name
         id: default-branch
         run: |
           default_branch=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} | jq -r .default_branch)
           echo "branch=$default_branch" >> "$GITHUB_OUTPUT"
-      - name: Determine image tag
-        id: tag
-        run: |
-          if [[ "${{ github.ref_name }}" == "${{ steps.default-branch.outputs.branch }}" ]]; then
-            echo "image_tag=sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "image_tag=${{ github.ref_name }}-sha-${{ github.sha }}" >> "$GITHUB_OUTPUT"
-          fi
 
   test:
     needs:
@@ -97,7 +88,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:${{ needs.prepare-to-run.outputs.image-tag }}
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}
 
   deploy:
     if: github.ref == 'refs/heads/${{ needs.prepare-to-run.outputs.default-branch }}'

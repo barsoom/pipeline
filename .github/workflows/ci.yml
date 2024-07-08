@@ -5,20 +5,7 @@ on:
   push:
 
 jobs:
-  prepare-to-run:
-    runs-on: ubuntu-latest
-    outputs:
-      default-branch: ${{ steps.default-branch.outputs.branch }}
-    steps:
-      - name: Determine default Git branch name
-        id: default-branch
-        run: |
-          default_branch=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }} | jq -r .default_branch)
-          echo "branch=$default_branch" >> "$GITHUB_OUTPUT"
-
   test:
-    needs:
-      - prepare-to-run
     runs-on: ubuntu-latest
     env:
       BUNDLE_PATH: vendor/bundle
@@ -58,8 +45,6 @@ jobs:
           retention-days: 5
 
   prepare-app-image:
-    needs:
-      - prepare-to-run
     permissions:
       id-token: write
       contents: read
@@ -91,10 +76,9 @@ jobs:
             ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}
 
   deploy:
-    if: github.ref == 'refs/heads/${{ needs.prepare-to-run.outputs.default-branch }}'
+    if: github.ref == github.event.repository.default_branch
     needs:
       - test
-      - prepare-to-run
       - prepare-app-image
     concurrency:
       group: deploy-to-production-${{ github.ref }}
@@ -105,7 +89,6 @@ jobs:
       - name: Checkout Pipeline repository
         uses: actions/checkout@v4
         with:
-          ref: ${{ needs.prepare-to-run.outputs.default-branch }}
           fetch-depth: 0
 
       - name: Checkout stack repository

@@ -42,11 +42,17 @@ RSpec.describe Project, "github_url" do
 end
 
 RSpec.describe Project, ".all_sorted" do
-  it "returns all projects projects by position and alphabetically" do
-    FactoryBot.create(:project, name: "alpha", position: 1)
-    FactoryBot.create(:project, name: "beta", position: 1)
-    FactoryBot.create(:project, name: "delta", position: 0)
+  it "returns all projects by position, revision age, and alphabetically" do
+    a = FactoryBot.create(:project, name: "a", position: 1)
+    b = FactoryBot.create(:project, name: "b", position: 1)
+    FactoryBot.create(:project, name: "c", position: 1)
+    FactoryBot.create(:project, name: "d", position: 0)
 
-    expect(Project.all_sorted.map(&:name)).to eq([ "delta", "alpha", "beta" ])
+    expect(Project.all_sorted.map(&:name)).to eq([ "d", "a", "b", "c" ])
+
+    FactoryBot.create(:revision, project: b, created_at: 1.hour.ago)
+    FactoryBot.create(:revision, project: a, created_at: 1.day.ago)
+
+    expect(Project.all_sorted.map(&:name)).to eq([ "d", "b", "a", "c" ]) # no revisions = last
   end
 end

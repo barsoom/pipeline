@@ -5,7 +5,9 @@ class Project < ActiveRecord::Base
   validates :name, presence: true
 
   def self.all_sorted
-    order("position ASC, name ASC")
+    left_joins(:revisions)
+      .group(:id)
+      .order(Arel.sql("projects.position ASC, COALESCE(MAX(revisions.created_at), '1970-01-01') DESC, projects.name ASC"))
   end
 
   def self.find_or_create_for_repository(repository)

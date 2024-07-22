@@ -41,8 +41,8 @@ module Pipeline
     config.middleware.insert_after ActionDispatch::Session::CookieStore, JwtAuthentication, ignore: [
       { method: "GET",  path: "/revision" },
       { method: "GET",  path: "/api/*" },
-      { method: "POST",  path: "/api/*" },
-      { method: "DELETE",  path: "/api/*" },
+      { method: "POST", path: "/api/*" },
+      { method: "DELETE", path: "/api/*" },
     ]
 
     unless config.secret_key_base

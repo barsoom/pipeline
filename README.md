@@ -16,7 +16,7 @@ The build names are links to the `status_url` passed in when reporting builds. A
 
 ## Web UI
 
-Visit <https://ci-pipeline.herokuapp.com/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config: `h config:get WEB_PASSWORD -a ci-pipeline`
+Visit <https://pipeline.auctionet.dev/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config: `k config:get pipeline WEB_PASSWORD`
 
 ## API
 
@@ -110,20 +110,20 @@ A build is unlocked by posting to `/api/build/unlock` with the following attribu
 
 To run the app in production you need to set a few envs.
 
-    heroku config:set WEB_PASSWORD=your-password-here
-    heroku config:set SECRET_KEY_BASE=$(rake secret)
+    WEB_PASSWORD=your-password-here
+    SECRET_KEY_BASE=$(rake secret)
 
 Optionally you can use SSO instead of WEB_PASSWORD via the use of [jwt_authentication](https://github.com/barsoom/jwt_authentication), see that gem for docs.
 
 By default builds will go from "building" to "pending" after 60 minutes
 as some builds may have been killed in a bad way where the final status
-was never reported. You can change this time like this:
+was never reported. You can change this time with an env:
 
-    # heroku config:set BUILD_TIMEOUT_IN_MINUTES=120
+    # BUILD_TIMEOUT_IN_MINUTES=120
 
-You can limit the amount of revisions, to keep the database size manageable:
+You can limit the amount of revisions, to keep the database size manageable with an env:
 
-    # heroku config:set REVISIONS_TO_KEEP=1000
+    # REVISIONS_TO_KEEP=1000
 
 `REVISIONS_TO_KEEP` defaults to 500.
 

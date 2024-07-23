@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  production_hosts = [ "ci-pipeline.herokuapp.com", "pipeline.auctionet.dev", /10\.\d{1,3}\.\d{1,3}\.\d{1,3}/ ]
+  production_hosts = [ "pipeline.auctionet.dev", /10\.\d{1,3}\.\d{1,3}\.\d{1,3}/ ]
   config.hosts += production_hosts
 
   # Code is not reloaded between requests.

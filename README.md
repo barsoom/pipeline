@@ -4,7 +4,7 @@
 
 This is a tool for viewing CI build status from multiple CI servers and projects. It's a second iteration of our internal tools at [auctionet](http://dev.auctionet.com) and is in daily use.
 
-We run it on heroku. The instructions are not complete, but it should not be hard to figure out what's needed to set up your own (this is basically just a simple rails app).
+The instructions are not complete, but it should not be hard to figure out what's needed to set up your own (this is basically just a simple rails app).
 
 ## How it looks
 
@@ -156,7 +156,6 @@ Various things we could do later.
 * Add CircleCI support if they [improve their webhooks](https://discuss.circleci.com/t/build-webhook-notifications-for-starting-a-build-and-for-each-step-as-it-goes/5500)
 * Add build reporting script
   - possibly built in go so that it is simple to install, no deps on ruby or similar
-* Add heroku deploy instructions, look at [gridlook](https://github.com/barsoom/gridlook#installation)
 * Make a new screenshot
 * Be able to manually trigger builds in CI. Probably some kind of plugin-API.
 * Possibly make it possible to view one project at a time, or the latest results from all projects in a compact view.

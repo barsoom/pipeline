@@ -16,7 +16,7 @@ The build names are links to the `status_url` passed in when reporting builds. A
 
 ## Web UI
 
-Visit <https://pipeline.auctionet.dev/?pw=PASSWORD>, finding the actual `PASSWORD` in Heroku config: `k config:get pipeline WEB_PASSWORD`
+Visit <https://pipeline.auctionet.dev/?pw=PASSWORD>, finding the actual `PASSWORD` in application config: `k config:get pipeline WEB_PASSWORD`
 
 ## API
 

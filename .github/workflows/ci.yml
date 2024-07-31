@@ -73,7 +73,7 @@ jobs:
           context: .
           push: ${{ github.ref_name == github.event.repository.default_branch }}
           tags: |
-            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}
+            ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}:sha-${{ github.sha }}
 
   deploy:
     if: github.ref_name == github.event.repository.default_branch
@@ -107,7 +107,7 @@ jobs:
 
       - name: Update values.yaml with new image tag
         run: |
-          NEW_TAG="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/pipeline:sha-${{ github.sha }}"
+          NEW_TAG="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}:sha-${{ github.sha }}"
           sed -i "s|image:.*|image: $NEW_TAG|g" stack/applications/pipeline/values.yaml
 
       - name: Deploy

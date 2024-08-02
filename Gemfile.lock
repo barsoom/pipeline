@@ -303,7 +303,7 @@ DEPENDENCIES
   httparty
   importmap-rails
   jwt_authentication!
-  mail (>= 2.8.0.rc1)
+  mail
   mutex_m
   pg
   pry

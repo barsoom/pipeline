@@ -320,18 +320,15 @@ PLATFORMS
 DEPENDENCIES
   attr_extras
   barsoom_utils
-  base64
   bootstrap-sass
   bootstrap_forms!
   capybara
-  drb
   factory_bot_rails
   honeybadger
   httparty
   importmap-rails
   jwt_authentication!
   mail
-  mutex_m
   pg
   pry
   puma

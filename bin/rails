@@ -1,4 +1,39 @@
 #!/usr/bin/env ruby
 APP_PATH = File.expand_path("../config/application", __dir__)
 require_relative "../config/boot"
+
+# Auctionet monkeypatch
+# Inspired by: https://github.com/rails/rails/issues/50220
+require "rails/command"
+require "rails/commands/rake/rake_command"
+module Rails
+  module Command
+    class RakeCommand < Base
+      class << self
+        def perform(task, args, config)
+          retried = false
+          with_rake(task, *args) do |rake|
+            begin # Auctionet: We want to catch UnrecognizedCommandError, once.
+              if unrecognized_task = rake.top_level_tasks.find { |task| !rake.lookup(task[/[^\[]+/]) }
+                @rake_tasks = rake.tasks
+                raise UnrecognizedCommandError.new(unrecognized_task)
+              end
+            rescue UnrecognizedCommandError
+              raise if retried
+
+              retried = true
+              RailslessRakeTaskRunner.load_rails # Auctionet: This hooks in to the existing fall back to load it all.
+              retry
+            end
+
+            rake.options.suppress_backtrace_pattern = non_app_file_pattern
+            rake.standard_exception_handling { rake.top_level }
+          end
+        end
+      end
+    end
+  end
+end
+# END of Auctionet monkeypatch
+
 require "rails/commands"

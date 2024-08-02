@@ -9,6 +9,11 @@ class Api::GithubActionsWebhooksController < ApiController
       return
     end
 
+    unless workflow_job[:head_branch] == params[:repository][:default_branch]
+      render json: {}
+      return
+    end
+
     project = UpdateBuildStatus.call(
       workflow_job[:name],
       params[:repository][:ssh_url],

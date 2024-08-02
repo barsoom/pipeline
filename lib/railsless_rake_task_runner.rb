@@ -10,7 +10,7 @@ module RailslessRakeTaskRunner
   end
 end
 
-if defined?(Rake)
+if defined?(Rake) && Rake.respond_to?(:application)
   # Try to run no-rails tasks first. Fallback to rails if none is found.
   Rake.application.instance_eval do
     module Rake

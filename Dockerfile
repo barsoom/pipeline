@@ -29,7 +29,6 @@ COPY --from=build /app /app
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /app/vendor/bundle /app/vendor/bundle
 RUN apk --no-cache add --virtual runtime-dependencies \
-  postgresql-dev \
   postgresql-client \
   tzdata \
   bash

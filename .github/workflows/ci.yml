@@ -64,7 +64,7 @@ jobs:
         id: ruby-version
         run: |
           echo "ruby_version=$(cat .ruby-version)" >> "$GITHUB_OUTPUT"
-      - name: Build and push Docker image with revision and latest tags
+      - name: Build and push Docker
         uses: docker/build-push-action@v5
         with:
           build-args: |

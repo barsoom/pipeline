@@ -1,5 +1,4 @@
 require "active_support/core_ext/module/delegation"
-require "merge_builds"
 
 class BuildPresenter
   pattr_initialize :revision

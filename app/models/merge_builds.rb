@@ -1,5 +1,3 @@
-require "build_status"
-
 class MergeBuilds
   method_object :builds
 

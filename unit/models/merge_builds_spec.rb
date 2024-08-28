@@ -1,5 +1,6 @@
 require "spec_helper"
 require "ostruct"
+require "build_status"
 require "merge_builds"
 
 RSpec.describe MergeBuilds do

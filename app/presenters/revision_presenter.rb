@@ -1,5 +1,3 @@
-require "build_presenter"
-
 class RevisionPresenter
   pattr_initialize :revision
 

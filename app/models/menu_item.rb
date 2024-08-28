@@ -1,5 +1,3 @@
-require "ostruct"
-
 class MenuItem
   def initialize(name, current)
     @active = (name == current)

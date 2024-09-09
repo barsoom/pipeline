@@ -1,11 +1,13 @@
 require "spec_helper"
+require "build_status"
+require "merge_builds"
+require "build_presenter"
 require "revision_presenter"
-require "ostruct"
 require "build_mapping"
 
 RSpec.describe RevisionPresenter do
   before do
-    stub_const "Build", OpenStruct
+    stub_const "Build", Struct.new(:name, :status, :updated_at)
   end
 
   describe "#name" do

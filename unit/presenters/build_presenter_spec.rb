@@ -1,13 +1,14 @@
 require "spec_helper"
+require "build_status"
+require "merge_builds"
 require "build_presenter"
-require "ostruct"
 require "build_mapping"
 require "active_support"
 require "active_support/core_ext"
 
 RSpec.describe BuildPresenter, "#list" do
   before do
-    stub_const "Build", OpenStruct
+    stub_const "Build", Struct.new(:name, :status, :status_url, :updated_at)
   end
 
   it "returns builds" do

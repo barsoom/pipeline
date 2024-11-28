@@ -1,7 +1,8 @@
 #cloud-config
 users:
   - name: username
-    password: password
+    plain_text_passwd: password
+    lock_passwd: false
     chpasswd: { expire: false }
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
@@ -24,3 +25,4 @@ runcmd:
   - systemctl stop sshd
   - systemctl disable sshd
   - curl https://maintenance.auctionet.dev/it-ran
+  - reboot

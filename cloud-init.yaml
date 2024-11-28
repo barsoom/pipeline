@@ -1,0 +1,25 @@
+#cloud-config
+users:
+  - name: username
+    password: password
+    chpasswd: { expire: false }
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+
+disable_root: true
+
+ssh_pwauth: false
+ssh_deletekeys: true
+
+packages:
+  - ufw
+package_update: true
+package_upgrade: true
+
+write_files:
+  - path: /etc/motd
+    content: |
+      Hello there.
+runcmd:
+  - systemctl stop sshd
+  - systemctl disable sshd

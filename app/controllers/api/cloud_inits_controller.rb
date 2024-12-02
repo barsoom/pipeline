@@ -10,7 +10,7 @@ class Api::CloudInitsController < ApiController
 	    lock_passwd: false,
 	    chpasswd: { expire: false },
 	    sudo: "ALL=(ALL) NOPASSWD:ALL",
-	    shell: "/bin/bash"
+	    shell: "/bin/bash",
 	  }
 	],
 	disable_root: true,
@@ -21,16 +21,21 @@ class Api::CloudInitsController < ApiController
 	package_upgrade: true,
 	write_files: [
 	  {
-	    path: "/etc/motd",
-	    content: "Hello there."
-	  }
+	    path: "/etc/environment",
+	    content: %{
+              RUNNER_CFG_PAT=#{App.github_actions_runner_cfg_pat}
+            },
+            append: true,
+	  },
 	],
 	runcmd: [
+          "while read -r env; do export \"$env\"; done < /etc/environment",
 	  "systemctl stop sshd",
 	  "systemctl disable sshd",
 	  "curl https://maintenance.auctionet.dev/it-ran",
-	  "reboot"
-	]
+          "curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}",
+	  "reboot",
+	],
       }
 
     yaml = "#cloud-config\n" +

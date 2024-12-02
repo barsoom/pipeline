@@ -16,7 +16,7 @@ class Api::CloudInitsController < ApiController
 	disable_root: true,
 	ssh_pwauth: false,
 	ssh_deletekeys: true,
-	packages: [ "curl" ],
+	packages: [ "curl", "jq" ],
 	package_update: true,
 	package_upgrade: true,
 	write_files: [

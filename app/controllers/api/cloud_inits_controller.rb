@@ -26,15 +26,15 @@ class Api::CloudInitsController < ApiController
             append: true,
 	  },
 	],
-	runcmd: <<~BEGIN
-	  export RUNNER_CFG_PAT=#{App.github_actions_runner_cfg_pat}
-	  systemctl stop sshd
-	  systemctl disable sshd
-	  curl https://maintenance.auctionet.dev/running; true
-          curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}
-	  curl https://maintenance.auctionet.dev/it-ran; true
-	  reboot
-        BEGIN
+	runcmd: [
+          "while read -r env; do export \"$env\"; done < /etc/environment",
+	  "systemctl stop sshd",
+	  "systemctl disable sshd",
+	  "curl https://maintenance.auctionet.dev/running; true",
+          "curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}",
+	  "curl https://maintenance.auctionet.dev/it-ran; true",
+	  "reboot",
+	],
       }
 
     yaml = "#cloud-config\n" +

@@ -32,7 +32,8 @@ class Api::CloudInitsController < ApiController
 	  "curl https://maintenance.auctionet.dev/running; true",
 
           # The script relies on running sudo but we've disabled root which means it will bring up a prompt to set a password. Running su will run it as the default user that can sudo and also reload the /etc/environment variables.
-          "su username -c 'cd; curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}'",
+          # -f replaces any existing runner with the same name so that you can reinstall a runner and have it replace the old one.
+          "su username -c 'cd; curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s -- -f -s #{App.github_actions_runner_scope}'",
 
 	  "curl https://maintenance.auctionet.dev/it-ran; true",
 	  "reboot",

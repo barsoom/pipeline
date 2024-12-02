@@ -27,7 +27,7 @@ class Api::CloudInitsController < ApiController
 	  },
 	],
 	runcmd: <<~BEGIN
-          while read -r env; do export "$env"; done < /etc/environment
+	  export RUNNER_CFG_PAT=#{App.github_actions_runner_cfg_pat}
 	  systemctl stop sshd
 	  systemctl disable sshd
 	  curl https://maintenance.auctionet.dev/running; true

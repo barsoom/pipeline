@@ -27,11 +27,13 @@ class Api::CloudInitsController < ApiController
 	  },
 	],
 	runcmd: [
-          "while read -r env; do export \"$env\"; done < /etc/environment",
 	  "systemctl stop sshd",
 	  "systemctl disable sshd",
 	  "curl https://maintenance.auctionet.dev/running; true",
-          "curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}",
+
+          # The script relies on running sudo but we've disabled root which means it will bring up a prompt to set a password. Running su will run it as the default user that can sudo and also reload the /etc/environment variables.
+          "su username -c 'curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s #{App.github_actions_runner_scope}'",
+
 	  "curl https://maintenance.auctionet.dev/it-ran; true",
 	  "reboot",
 	],

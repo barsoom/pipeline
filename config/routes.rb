@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     resource :build_status, only: :create
     resource :github_actions_webhook, only: :create
+    resource :cloud_init, only: :show
 
     delete "projects/:name" => "projects#destroy"
     resource :build, only: [] do

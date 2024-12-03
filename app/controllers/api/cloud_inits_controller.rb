@@ -35,6 +35,10 @@ class Api::CloudInitsController < ApiController
           # -f replaces any existing runner with the same name so that you can reinstall a runner and have it replace the old one.
           "su username -c 'cd; curl -s https://raw.githubusercontent.com/actions/runner/main/scripts/create-latest-svc.sh | bash -s -- -f -s #{App.github_actions_runner_scope}'",
 
+          # git clone https://github.com/vbem/multi-runners
+          # MR_GITHUB_PAT=... in .env
+          # ./mr.bash add --org #{App.github_actions_runner_scope} --count 3
+
 	  "curl https://maintenance.auctionet.dev/it-ran; true",
 	  "reboot",
 	],

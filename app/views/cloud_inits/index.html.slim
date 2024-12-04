@@ -8,5 +8,9 @@ h1 Cloud-inits
           = link_to "Edit", edit_cloud_init_path(cloud_init)
         .status
           h1 = cloud_init.name
+          p How to use:
+          pre = "#include\n" + api_cloud_init_url(name: cloud_init.name, token: App.api_token)
+
+          p Contents:
           pre = cloud_init.data
     p = link_to "New cloud-init", new_cloud_init_path

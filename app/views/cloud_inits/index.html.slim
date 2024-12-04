@@ -1,0 +1,12 @@
+h1 Cloud-inits
+
+.row.index
+  .span12
+    - cloud_inits.each do |cloud_init|
+      .project
+        .actions
+          = link_to "Edit", edit_cloud_init_path(cloud_init)
+        .status
+          h1 = cloud_init.name
+          pre = cloud_init.data
+    p = link_to "New cloud-init", new_cloud_init_path

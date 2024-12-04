@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe "GET /api/cloud_init", type: :request do
-  it "gets a cloud init config if you have the right api token" do
+  it "gets a cloud-init config if you have the right api token" do
     allow(App).to receive(:api_token).and_return("secret")
 
     get "/api/cloud_init?token=secret"

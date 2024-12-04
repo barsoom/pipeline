@@ -6,6 +6,7 @@ class WebController < ApplicationController
 
   before_action :require_password
   before_action :setup_menu
+  before_action :get_projects
 
   private
 
@@ -27,5 +28,9 @@ class WebController < ApplicationController
     else
       session[:logged_in] = true
     end
+  end
+
+  def get_projects
+    @projects = Project.all_sorted
   end
 end

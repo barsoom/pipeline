@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cloud_inits
   get "revision" => ->(_) { [ 200, {}, [ File.exist?("built_from_revision") ? File.read("built_from_revision") : ENV.fetch("GIT_COMMIT") ] ] }
   get "boom" => ->(_) { raise "Boom!" }
 

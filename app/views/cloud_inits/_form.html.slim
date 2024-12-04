@@ -1,0 +1,14 @@
+.row
+  .span12
+    .page
+      .row
+        .span9
+          = bootstrap_form_for(cloud_init) do |f|
+            = f.text_field :name
+            = f.text_area :data, style: "width: 875px; height: 400px;", label: "Contents"
+            p = link_to "Cloud-init docs", "https://cloudinit.readthedocs.io/en/latest/", target: "_blank"
+            .form-actions
+              = submit_tag "Save", class: "btn btn-primary"
+        - if cloud_init.persisted?
+          .span2
+            = button_to "Remove", cloud_init_path(cloud_init), method: :delete, data: { confirm: "Are you sure you want to remove #{cloud_init.name}?" }, class: "btn btn-danger"

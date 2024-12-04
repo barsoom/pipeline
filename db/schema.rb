@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2014_02_16_162823) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_03_104945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -22,6 +22,13 @@ ActiveRecord::Schema[7.1].define(version: 2014_02_16_162823) do
     t.string "name", limit: 255, null: false
     t.integer "revision_id"
     t.string "status_url", limit: 255
+  end
+
+  create_table "cloud_inits", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "data", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|

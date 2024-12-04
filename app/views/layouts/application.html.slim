@@ -10,10 +10,12 @@ html
     .container
       nav.navbar.navbar-default
         .navbar-header
-          = link_to("Pipeline", root_path, class: "navbar-brand")
-          ul.nav.navbar-nav
+          = link_to("Pipeline", root_path, class: "navbar-brand navbar-brand--logo")
+          ul.nav.navbar-nav style="float: right"
+            li = link_to("Cloud-inits", cloud_inits_path)
+          ul.nav.navbar-nav style="width: 90%"
             - @projects.each do |project|
-                li class=menu_item_class(:project)
+                li class=menu_item_class(project)
                   = link_to(project.name, project_path(id: project.id))
 
 

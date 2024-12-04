@@ -1,6 +1,4 @@
 class ProjectsController < WebController
-  before_action :get_projects
-
   # Keep this number low. We push updates that include revision data every time a change comes in.
   # We've seen timeouts when this was set to 50.
   MAX_REVISIONS = 15
@@ -67,9 +65,5 @@ class ProjectsController < WebController
 
   def setup_menu
     active_menu_item_name :projects
-  end
-
-  def get_projects
-    @projects = Project.all_sorted
   end
 end

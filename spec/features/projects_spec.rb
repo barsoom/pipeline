@@ -13,7 +13,7 @@ RSpec.describe "Projects", type: :feature do
         click_link "Edit"
       end
 
-      click_link "Remove"
+      click_button "Remove"
 
       expect(PostStatusToWebhook).to have_received(:call).with(project)
       expect(current_path).to eq(root_path)

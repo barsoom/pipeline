@@ -6,10 +6,10 @@
           = bootstrap_form_for(cloud_init) do |f|
             = f.text_field :name
 
-            = f.label :data, "Contents"
+            = f.label :data, "Content"
             div#editor style="width: 90%; height: 1200px;" = f.object.data
 
-            = f.text_area :data, id: "data", style: "display: none;"
+            = f.text_area :data, id: "cloud_init_data", style: (Rails.env.test? ? "" : "display: none;")
 
             script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"
             script
@@ -18,7 +18,7 @@
               | editor.session.setMode("ace/mode/yaml");
               | editor.setFontSize(16);
               | editor.session.on("change", function() {
-              |   document.getElementById("data").value = editor.getValue();
+              |   document.getElementById("cloud_init_data").value = editor.getValue();
               | });
 
 

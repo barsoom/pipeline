@@ -12,16 +12,15 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_12_03_104945) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
-  create_table "builds", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "status", limit: 255, null: false
-    t.string "name", limit: 255, null: false
+  create_table "builds", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status", null: false
+    t.string "name", null: false
     t.integer "revision_id"
-    t.string "status_url", limit: 255
+    t.string "status_url"
   end
 
   create_table "cloud_inits", force: :cascade do |t|
@@ -31,20 +30,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_104945) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", id: :serial, force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.string "name", limit: 255, null: false
-    t.string "repository", limit: 255
+  create_table "projects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "repository"
     t.text "mappings"
     t.integer "position", default: 0
   end
 
-  create_table "revisions", id: :serial, force: :cascade do |t|
-    t.string "name", limit: 255, null: false
+  create_table "revisions", force: :cascade do |t|
+    t.string "name", null: false
     t.integer "project_id", null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

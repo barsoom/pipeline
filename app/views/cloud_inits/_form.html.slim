@@ -5,7 +5,23 @@
         .span9
           = bootstrap_form_for(cloud_init) do |f|
             = f.text_field :name
-            = f.text_area :data, style: "width: 875px; height: 400px;", label: "Contents"
+
+            = f.label :data, "Contents"
+            div#editor style="width: 90%; height: 1200px;" = f.object.data
+
+            = f.text_area :data, id: "data", style: "display: none;"
+
+            script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"
+            script
+              | var editor = ace.edit("editor");
+              | editor.setTheme("ace/theme/monokai");
+              | editor.session.setMode("ace/mode/yaml");
+              | editor.setFontSize(16);
+              | editor.session.on("change", function() {
+              |   document.getElementById("data").value = editor.getValue();
+              | });
+
+
             p = link_to "Cloud-init docs", "https://cloudinit.readthedocs.io/en/latest/", target: "_blank"
             .form-actions
               = submit_tag "Save", class: "btn btn-primary"

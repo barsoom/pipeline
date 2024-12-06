@@ -7,6 +7,8 @@
             = f.text_field :name
 
             = f.label :data, "Content"
+            p
+              strong NOTE: Keep a backup copy of this since it does not store old versions or handle if the pipeline session times out before you save.
             #editor style="width: 90%; height: 1200px;" = f.object.data
 
             = f.text_area :data, id: "cloud_init_data", style: (Rails.env.test? ? "" : "display: none;")

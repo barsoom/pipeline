@@ -25,4 +25,12 @@ namespace :app do
       system(%{pg_restore --no-acl --no-owner -d pipeline_development "#{DUMP_PATH}"}) || exit(1)
     end
   end
+
+  desc "Show the username and password for a cloud-init server"
+  task :cloud_init_login, [:remote_ip] => :environment do |_t, args|
+    remote_ip = args[:remote_ip]
+    helper = CloudInitTemplateHelper.new(remote_ip)
+    puts "Cloud init server #{remote_ip} has username \"#{helper.username}\" and password \"#{helper.password}\" (if the template uses them)"
+  end
+
 end

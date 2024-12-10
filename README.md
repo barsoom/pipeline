@@ -106,6 +106,12 @@ A build is unlocked by posting to `/api/build/unlock` with the following attribu
 * *repository*: The repository path (e.g. git@github...).
 * *revision*: The revision that you wish to unlock.
 
+## Cloud-init support
+
+The app can be used to provision new servers using cloud-init. You can create a new script in the WEB UI which is then served by the API. In addition to this there is a rake task `rake app:cloud_init_login[remote_ip]` for accessing login credentials to the servers provisioned by the cloud-init script.
+
+There is no example of how this script looks at this time, but you can use official docs and use variables in the template to access to public methods and config on CloudInitTemplateHelper.
+
 ## ENVs
 
 To run the app in production you need to set a few envs.

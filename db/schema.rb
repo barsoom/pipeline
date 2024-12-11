@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_03_104945) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_10_133507) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,9 +25,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_104945) do
 
   create_table "cloud_inits", force: :cascade do |t|
     t.string "name", null: false
-    t.text "data", null: false
+    t.text "template", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_salt", null: false
+    t.jsonb "config", default: {}, null: false
   end
 
   create_table "projects", force: :cascade do |t|

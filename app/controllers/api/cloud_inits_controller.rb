@@ -1,15 +1,15 @@
 class Api::CloudInitsController < ApiController
   def show
-    template = CloudInit.find_by!(name: params[:name]).data
+    cloud_init = CloudInit.find_by!(name: params[:name])
 
-    helper = CloudInitTemplateHelper.new(request.remote_ip)
+    helper = CloudInitTemplateHelper.new(cloud_init:, remote_ip: request.remote_ip)
 
     # We don't run any code in the template itself since we don't need to
     # and it removes one possible attack vector.
-    data = template.gsub(/{{(.*?)}}/) {
+    data = cloud_init.template.gsub(/{{(.*?)}}/) {
       variable = $1
 
-      if helper.public_methods.include?(variable.to_sym)
+      if [ :password ].include?(variable.to_sym)
         helper.public_send(variable)
       else
         helper.config(variable)

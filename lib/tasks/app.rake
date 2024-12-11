@@ -26,11 +26,14 @@ namespace :app do
     end
   end
 
-  desc "Show the username and password for a cloud-init server"
-  task :cloud_init_login, [:remote_ip] => :environment do |_t, args|
+  desc "Show the password for a cloud-init server"
+  task :cloud_init_password, [:name, :remote_ip] => :environment do |_t, args|
+    name = args[:name]
     remote_ip = args[:remote_ip]
-    helper = CloudInitTemplateHelper.new(remote_ip)
-    puts "Cloud init server #{remote_ip} has username \"#{helper.username}\" and password \"#{helper.password}\" (if the template uses them)"
-  end
+    cloud_init = CloudInit.find_by!(name: name)
+    helper = CloudInitTemplateHelper.new(remote_ip: remote_ip, cloud_init:)
 
+    # intentionally print it in a easily parsable format since people might build tooling around this
+    puts "template=#{name} ip=#{remote_ip} password=#{helper.password}"
+  end
 end

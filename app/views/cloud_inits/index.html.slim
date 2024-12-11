@@ -12,5 +12,5 @@ h1 Cloud-inits
           pre = "#include\n" + api_cloud_init_url(name: cloud_init.name, token: App.api_token)
 
           p Contents:
-          pre = cloud_init.data
+          pre = cloud_init.template
     p = link_to "New cloud-init", new_cloud_init_path

@@ -108,9 +108,11 @@ A build is unlocked by posting to `/api/build/unlock` with the following attribu
 
 ## Cloud-init support
 
-The app can be used to provision new servers using cloud-init. You can create a new script in the WEB UI which is then served by the API. In addition to this there is a rake task `rake app:cloud_init_login[remote_ip]` for accessing login credentials to the servers provisioned by the cloud-init script.
+The app can be used to provision new servers using cloud-init. You can create a new script in the WEB UI which is then served by the API.
 
-There is no example of how this script looks at this time, but you can use official docs and use variables in the template to access to public methods and config on CloudInitTemplateHelper.
+In addition to this there is a rake task `rake app:cloud_init_password[template_name, remote_ip]` for accessing password for the servers provisioned by the cloud-init script (given you have used {{password}} in the template).
+
+For more information see the [cloud-init docs](https://cloudinit.readthedocs.io/en/latest/).
 
 ## ENVs
 

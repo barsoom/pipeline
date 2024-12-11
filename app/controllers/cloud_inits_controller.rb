@@ -44,6 +44,6 @@ class CloudInitsController < WebController
   end
 
   def cloud_init_params
-    params.require(:cloud_init).permit(:name, :data)
+    params.require(:cloud_init).permit(:name, :template)
   end
 end

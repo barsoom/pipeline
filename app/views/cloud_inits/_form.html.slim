@@ -6,12 +6,12 @@
           = bootstrap_form_for(cloud_init) do |f|
             = f.text_field :name
 
-            = f.label :data, "Content"
+            = f.label :template, "Content"
             p
               strong NOTE: Keep a backup copy of this since it does not store old versions or handle if the pipeline session times out before you save.
-            #editor style="width: 90%; height: 1200px;" = f.object.data
+            #editor style="width: 90%; height: 1200px;" = f.object.template
 
-            = f.text_area :data, id: "cloud_init_data", style: (Rails.env.test? ? "" : "display: none;")
+            = f.text_area :template, id: "cloud_init_template", style: (Rails.env.test? ? "" : "display: none;")
             script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"
             script
               | var editor = ace.edit("editor");
@@ -19,7 +19,7 @@
               | editor.session.setMode("ace/mode/yaml");
               | editor.setFontSize(16);
               | editor.session.on("change", function() {
-              |   document.getElementById("cloud_init_data").value = editor.getValue();
+              |   document.getElementById("cloud_init_template").value = editor.getValue();
               | });
 
             p = link_to "Cloud-init docs", "https://cloudinit.readthedocs.io/en/latest/", target: "_blank"

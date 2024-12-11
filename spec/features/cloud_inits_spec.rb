@@ -12,7 +12,7 @@ RSpec.describe "Cloud-inits", type: :feature do
     expect(current_path).to eq(cloud_inits_path)
     expect(page).to have_content("Cloud-init was successfully created.")
     cloud_init = CloudInit.first!
-    expect(cloud_init.data).to eq("content")
+    expect(cloud_init.template).to eq("content")
 
     click_link "Edit"
     fill_in "Name", with: "bar"

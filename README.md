@@ -112,6 +112,10 @@ The app can be used to provision new servers using cloud-init. You can create a 
 
 In addition to this there is a rake task `rake app:cloud_init_password[template_name, remote_ip]` for accessing password for the servers provisioned by the cloud-init script (given you have used {{password}} in the template).
 
+This is useful for servers that are not accessible by SSH (for security reasons) where you still have console access via the server provider by other means.
+
+When provisioning a server on Hetzner, take the IPv6 and replace /64 with 1 when running `rake app:cloud_init_password` to get the correct password.
+
 For more information see the [cloud-init docs](https://cloudinit.readthedocs.io/en/latest/).
 
 ## ENVs

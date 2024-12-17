@@ -11,6 +11,8 @@ class Api::CloudInitsController < ApiController
 
       if [ :password ].include?(variable.to_sym)
         helper.public_send(variable)
+      elsif [ :remote_ip ].include?(variable.to_sym)
+        request.remote_ip
       else
         helper.config(variable)
       end

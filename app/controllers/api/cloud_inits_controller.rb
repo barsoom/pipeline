@@ -14,12 +14,7 @@ class Api::CloudInitsController < ApiController
       elsif [ :remote_ip ].include?(variable.to_sym)
         request.remote_ip
       else
-        begin
-          helper.config(variable)
-        rescue KeyError
-          # Keep the original placeholder if the key is missing
-          "{{#{variable}}}"
-        end
+        helper.config(variable)
       end
     }
 

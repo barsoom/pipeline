@@ -65,7 +65,7 @@ jobs:
         run: |
           echo "ruby_version=$(cat .ruby-version)" >> "$GITHUB_OUTPUT"
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           build-args: |
             RUBY_VERSION=${{ steps.ruby-version.outputs.ruby_version }}

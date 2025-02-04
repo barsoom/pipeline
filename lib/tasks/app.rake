@@ -27,7 +27,7 @@ namespace :app do
   end
 
   desc "Show the password for a cloud-init server"
-  task :cloud_init_password, [:name, :remote_ip] => :environment do |_t, args|
+  task :cloud_init_password, [ :name, :remote_ip ] => :environment do |_t, args|
     name = args[:name]
     remote_ip = args[:remote_ip]
     cloud_init = CloudInit.find_by!(name: name)

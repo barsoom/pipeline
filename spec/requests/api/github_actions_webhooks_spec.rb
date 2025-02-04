@@ -16,7 +16,7 @@ RSpec.describe "POST /api/github_actions_webhook", type: :request do
         status: "success",
         conclusion: "success",
         html_url: "http://example.com/status-for-job/foo_tests",
-        head_branch: "main"
+        head_branch: "main",
       },
     }
   }

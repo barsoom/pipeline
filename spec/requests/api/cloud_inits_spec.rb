@@ -22,7 +22,7 @@ RSpec.describe "GET /api/cloud_init", type: :request do
   end
 
   it "fails when the api token is wrong" do
-    cloud_init = CloudInit.create!(name: "foo", template: "#cloud-config...")
+    CloudInit.create!(name: "foo", template: "#cloud-config...")
     allow(App).to receive(:api_token).and_return("secret")
 
     get "/api/cloud_init?token=wrong&name=foo"
@@ -32,7 +32,7 @@ RSpec.describe "GET /api/cloud_init", type: :request do
   end
 
   it "fails when the name is unknown" do
-    cloud_init = CloudInit.create!(name: "foo", template: "#cloud-config...")
+    CloudInit.create!(name: "foo", template: "#cloud-config...")
     allow(App).to receive(:api_token).and_return("secret")
 
     get "/api/cloud_init?token=wrong&name=bar"

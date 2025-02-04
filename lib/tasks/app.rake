@@ -30,8 +30,8 @@ namespace :app do
   task :cloud_init_password, [ :name, :remote_ip ] => :environment do |_t, args|
     name = args[:name]
     remote_ip = args[:remote_ip]
-    cloud_init = CloudInit.find_by!(name: name)
-    helper = CloudInitTemplateHelper.new(remote_ip: remote_ip, cloud_init:)
+    cloud_init = CloudInit.find_by!(name:)
+    helper = CloudInitTemplateHelper.new(remote_ip:, cloud_init:)
 
     # intentionally print it in a easily parsable format since people might build tooling around this
     puts "template=#{name} ip=#{remote_ip} password=#{helper.password}"

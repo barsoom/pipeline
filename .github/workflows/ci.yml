@@ -113,4 +113,7 @@ jobs:
           sed -i "s|image:.*|image: $NEW_TAG|g" stack/applications/pipeline/values.yaml
 
       - name: Deploy
+        env:
+          DEPLOYS_DISABLED: ${{ vars.DEPLOYS_DISABLED_IN_PRODUCTION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: stack/script/ci/deploy.sh pipeline.auctionet.dev

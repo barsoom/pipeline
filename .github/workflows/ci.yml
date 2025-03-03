@@ -2,6 +2,12 @@ name: CI/CD Pipeline
 
 on:
   workflow_dispatch:
+    inputs:
+      ignore_autodeploy_policy:
+        description: 'Allow deployment outside normal hours or days.'
+        required: true
+        type: boolean
+        default: false
   push:
 
 jobs:
@@ -117,5 +123,6 @@ jobs:
       - name: Deploy
         env:
           DEPLOYS_DISABLED: ${{ vars.DEPLOYS_DISABLED_IN_PRODUCTION }}
+          IGNORE_AUTODEPLOY_POLICY: ${{ github.event.inputs.ignore_autodeploy_policy }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: stack/script/ci/deploy.sh pipeline.auctionet.dev

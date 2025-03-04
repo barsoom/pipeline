@@ -44,11 +44,12 @@ jobs:
       - run: bundle exec rails db:setup db:migrate
       - name: Run tests
         run: bundle exec rake
-      - name: Upload test results
-        uses: actions/upload-artifact@v4
+      - name: Generate summary
+        if: success() || failure()
+        id: report
+        uses: p-wall/rspec-summary-action@v1
         with:
-          path: tmp/test-results
-          retention-days: 5
+          pattern: 'tmp/test-results/rspec.json'
 
   build:
     permissions:

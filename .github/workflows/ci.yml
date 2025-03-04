@@ -50,6 +50,15 @@ jobs:
         uses: p-wall/rspec-summary-action@v1
         with:
           pattern: 'tmp/test-results/rspec.json'
+      - name: Notify
+        if: github.ref_name == github.event.repository.default_branch && failure()
+        uses: slackapi/slack-github-action@v2
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            "channel": "${{ secrets.DEV_BOTS_SLACK_CHANNEL }}",
+            "text": ${{ toJSON(steps.report.outputs.slack_message) }}
 
   build:
     permissions:

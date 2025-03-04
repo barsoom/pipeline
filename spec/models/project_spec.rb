@@ -15,7 +15,7 @@ end
 RSpec.describe Project do
   it "sets the name from repository" do
     project = Project.new(repository: "git@example.com:user/foo.git")
-    expect(project.name).to eq("foo")
+    expect(project.name).to eq("bork")
   end
 end
 

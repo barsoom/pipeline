@@ -8,7 +8,7 @@ ENV BUNDLE_IGNORE_FUNDING_REQUESTS=yes \
     BUNDLE_IGNORE_MESSAGES=yes \
     RAILS_ENV=production \
     SECRET_KEY_BASE=does_not_matter_here
-RUN apk --no-cache add --virtual build-dependencies build-base git postgresql-dev \
+RUN apk --no-cache add --virtual build-dependencies build-base git postgresql-dev yaml-dev \
     && gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)" \
     && bundle config set --local deployment 'true' \
     && bundle config set --local without 'development test' \

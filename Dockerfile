@@ -31,7 +31,8 @@ COPY --from=build /app/vendor/bundle /app/vendor/bundle
 RUN apk --no-cache add --virtual runtime-dependencies \
   postgresql-client \
   tzdata \
-  bash
+  bash \
+  libstdc++  # /app/vendor/bundle/ruby/3.4.0/gems/ffi-1.17.1-x86_64-linux-musl/lib/ffi/dynamic_library.rb:94:in 'FFI::DynamicLibrary.load_library': Could not open library '/app/vendor/bundle/ruby/3.4.0/gems/sassc-2.4.0/lib/sassc/libsass.so': Error loading shared library libstdc++.so.6: No such file or directory (needed by /app/vendor/bundle/ruby/3.4.0/gems/sassc-2.4.0/lib/sassc/libsass.so). (LoadError)
 ENV RAILS_ENV=production
 
 ARG REVISION

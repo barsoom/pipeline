@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   get "revision" => ->(_) { [ 200, {}, [ File.exist?("built_from_revision") ? File.read("built_from_revision") : ENV.fetch("GIT_COMMIT") ] ] }
   get "boom" => ->(_) { raise "Boom!" }
 
+  # JwtAuthentication middleware handles the incoming request. We have this so
+  # that the background job won't fail due to the root page being slow to load.
+  get "sso_update" => ->(_) { [ 200, {}, [ "ok" ] ] }
+
   # NOTE: If you change anything here, also check JwtAuthentication config in application.rb
   namespace :api do
     resource :build_status, only: :create

@@ -26,7 +26,6 @@ gem "tzinfo-data"
 group :development, :test do
   gem "pry"
   gem "rspec-rails"
-  gem "rspec_junit_formatter", require: false
   gem "rubocop" # See .rubocop.yml for configuration and docs.
 end
 

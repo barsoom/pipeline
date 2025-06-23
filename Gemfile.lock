@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/barsoom/jwt_authentication.git
-  revision: c20e3f8adaadb5d5849d0ae738459120341838e7
+  revision: bb6c5ba3e4bbd33f9817a697e71b99a7708a4564
   specs:
     jwt_authentication (0.1.1)
       attr_extras
@@ -155,7 +155,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.12.2)
-    jwt (2.10.1)
+    jwt (3.0.0)
       base64
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
@@ -351,7 +351,7 @@ DEPENDENCIES
   honeybadger
   httparty
   importmap-rails
-  jwt (< 3)
+  jwt
   jwt_authentication!
   logger
   mail

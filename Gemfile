@@ -12,7 +12,7 @@ gem "honeybadger"
 gem "httparty"
 gem "importmap-rails"
 gem "jwt_authentication", github: "barsoom/jwt_authentication"
-gem "jwt", "<3" # LOCKED: Remove direct dependency when verified the breaking changes in https://my.diffend.io/gems/jwt/2.10.1/3.0.0
+gem "jwt"
 gem "logger" # Ruby 3.5.0 will no longer have this as a part of standard gems. Reason: activesupport 7.1.4
 gem "mail"
 gem "ostruct" # Ruby 3.5.0 will no longer have this as a part of standard gems. Reason: pry 0.14.2

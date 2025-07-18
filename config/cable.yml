@@ -7,8 +7,22 @@ test:
 production:
   adapter: redis
   <%
-    port = ENV["DEVBOX"] ? `service_port redis`.strip : 6379
-    url = URI.parse(ENV["REDISCLOUD_URL"] || ENV["REDIS_URL"] || "redis://localhost:#{port}")
+    sentinels = nil
+    if ENV["USING_SENTINEL_URL"]
+      uri = URI(ENV["SENTINEL_URL"])
+      sentinels = Resolv.getaddresses(uri.host).map { { host: it, port: uri.port } }
+    else
+      port = ENV["DEVBOX"] ? `service_port redis`.strip : 6379
+      url = URI.parse(ENV["REDISCLOUD_URL"] || ENV["REDIS_URL"] || "redis://localhost:#{port}")
+    end
  %>
+<% if sentinels %>
+  url:
+  name: <%= uri.path.delete_prefix("/") %>
+  sentinels: <%= sentinels.to_json %>
+  sentinel_username: uri.user
+  sentinel_password: uri.password
+<% else %>
   url: <%= url %>
+<% end %>
   channel_prefix: pipeline_production

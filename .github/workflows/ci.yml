@@ -104,6 +104,10 @@ jobs:
       group: deploy-to-production
       cancel-in-progress: false
     runs-on: ubuntu-latest
+    env:
+      GITHUB_REPOSITORY: ${{ github.event.repository.name }}
+      GITHUB_SHA: ${{ github.sha }}
+      GITHUB_RUN_ID: ${{ github.run_id }}
 
     steps:
       - name: Checkout Pipeline repository
@@ -126,19 +130,13 @@ jobs:
       - name: Ensure revision is newer than deployed revision
         run: stack/script/ci/ensure_revision_is_newer_than_deployed_revision.sh
 
-      - name: Update values.yaml with new image tag
-        env:
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          GITHUB_REPOSITORY: ${{ github.event.repository.name }}
-          GITHUB_SHA: ${{ github.sha }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
-        run: stack/script/ci/update-values.sh stack/applications/pipeline/values.yaml
-
       - name: Deploy
         env:
           DEPLOYS_DISABLED: ${{ vars.DEPLOYS_DISABLED_IN_PRODUCTION }}
           IGNORE_AUTODEPLOY_POLICY: ${{ github.event.inputs.ignore_autodeploy_policy }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: stack/script/ci/deploy.sh pipeline.auctionet.dev
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          stack/script/ci/update-values.sh stack/applications/pipeline/values.yaml
+          stack/script/ci/deploy.sh pipeline.auctionet.dev

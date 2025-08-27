@@ -119,6 +119,7 @@ jobs:
           token: ${{ secrets.STACK_TOKEN }}
           sparse-checkout: |
             applications/pipeline/values.yaml
+            script/ci/update-values.sh
             script/ci/deploy.sh
             script/ci/ensure_revision_is_newer_than_deployed_revision.sh
 
@@ -126,9 +127,14 @@ jobs:
         run: stack/script/ci/ensure_revision_is_newer_than_deployed_revision.sh
 
       - name: Update values.yaml with new image tag
-        run: |
-          NEW_TAG="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}:sha-${{ github.sha }}"
-          sed -i "s|image:.*|image: $NEW_TAG|g" stack/applications/pipeline/values.yaml
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          GITHUB_REPOSITORY: ${{ github.event.repository.name }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: stack/script/ci/update-values.sh stack/applications/pipeline/values.yaml
 
       - name: Deploy
         env:

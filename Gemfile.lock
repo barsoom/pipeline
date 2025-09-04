@@ -96,7 +96,7 @@ GEM
     barsoom_utils (0.2.0.58)
     base64 (0.3.0)
     benchmark (0.4.1)
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -112,7 +112,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.3)
+    connection_pool (2.5.4)
     crass (1.0.6)
     csv (3.3.5)
     date (3.4.1)
@@ -130,7 +130,7 @@ GEM
     ffi (1.17.2-x86_64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (6.0.6)
+    honeybadger (6.1.0)
       logger
       ostruct
     httparty (0.23.1)
@@ -192,8 +192,8 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
-    pg (1.6.1-x86_64-linux)
-    pg (1.6.1-x86_64-linux-musl)
+    pg (1.6.2-x86_64-linux)
+    pg (1.6.2-x86_64-linux-musl)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -205,10 +205,10 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (6.6.1)
+    puma (7.0.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.0)
+    rack (3.2.1)
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -276,7 +276,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.5)
-    rubocop (1.80.1)
+    rubocop (1.80.2)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)

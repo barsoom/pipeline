@@ -24,6 +24,7 @@ gem "slim"
 gem "tzinfo-data"
 
 group :development, :test do
+  gem "annotaterb"
   gem "pry"
   gem "rspec-rails"
   gem "rubocop" # See .rubocop.yml for configuration and docs.

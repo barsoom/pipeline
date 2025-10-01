@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  created_at :datetime         not null
+#  id         :bigint           not null, primary key
+#  mappings   :text
+#  name       :string           not null
+#  position   :integer          default(0)
+#  repository :string
+#  updated_at :datetime         not null
+#
 class Project < ActiveRecord::Base
   has_many :revisions, dependent: :destroy
   after_initialize :set_name

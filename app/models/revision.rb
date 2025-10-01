@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: revisions
+#
+#  created_at :datetime         not null
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  project_id :integer          not null
+#  updated_at :datetime         not null
+#
 class Revision < ActiveRecord::Base
   validates :name, format: /\A[a-z0-9]{40}\z/
 

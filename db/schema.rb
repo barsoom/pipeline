@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_13_122306) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_13_122306) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "builds", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -58,5 +58,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_13_122306) do
     t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
-
 end

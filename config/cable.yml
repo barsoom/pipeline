@@ -9,8 +9,9 @@ production:
   <%
     sentinels = nil
     if ENV["USING_SENTINEL_URL"]
-      uri = URI(ENV["SENTINEL_URL"])
-      sentinels = Resolv.getaddresses(uri.host).map { { host: it, port: uri.port } }
+      sentinel_uri = URI(ENV["SENTINEL_URL"])
+      redis_uri = URI(ENV["REDIS_URL"])
+      sentinels = Resolv.getaddresses(sentinel_uri.host).map { { host: it, port: sentinel_uri.port } }
     else
       port = ENV["DEVBOX"] ? `service_port redis`.strip : 6379
       url = URI.parse(ENV["REDIS_URL"] || "redis://localhost:#{port}")
@@ -18,10 +19,10 @@ production:
  %>
 <% if sentinels %>
   url:
-  name: <%= uri.path.delete_prefix("/") %>
+  name: <%= sentinel_uri.path.delete_prefix("/") %>
   sentinels: <%= sentinels.to_json %>
-  sentinel_username: uri.user
-  sentinel_password: uri.password
+  sentinel_password: sentinel_uri.password
+  password: redis_uri.password
 <% else %>
   url: <%= url %>
 <% end %>

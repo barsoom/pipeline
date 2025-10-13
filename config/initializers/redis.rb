@@ -1,3 +1,5 @@
+# NOTE: Also check config/cable.yml since it connects to redis independently of this.
+
 $redis =
   if ENV["USING_SENTINEL_URL"]
     uri = URI.parse(ENV["SENTINEL_URL"])

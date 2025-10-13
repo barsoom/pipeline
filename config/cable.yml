@@ -1,3 +1,4 @@
+# NOTE: Also check config/initializers/redis.rb
 development:
   adapter: async
 
@@ -21,10 +22,8 @@ production:
   url:
   name: <%= sentinel_uri.path.delete_prefix("/") %>
   sentinels: <%= sentinels.to_json %>
-  sentinel_username: sentinel_uri.user
-  sentinel_password: sentinel_uri.password
-  username: redis_uri.user
-  password: redis_uri.password
+  sentinel_username: <%= sentinel_uri.user %>
+  sentinel_password: <%= sentinel_uri.password %>
 <% else %>
   url: <%= url %>
 <% end %>

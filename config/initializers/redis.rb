@@ -2,12 +2,15 @@
 
 $redis =
   if ENV["USING_SENTINEL_URL"]
-    uri = URI.parse(ENV["SENTINEL_URL"])
-    name = uri.path.delete_prefix("/")
-    sentinels = Resolv.getaddresses(uri.host).map { { host: it, port: uri.port } }
-    sentinel_username = uri.user
-    sentinel_password = uri.password
-    Redis.new(name:, sentinels:, sentinel_username:, sentinel_password:)
+    sentinel_uri = URI.parse(ENV["SENTINEL_URL"])
+    redis_uri = URI.parse(ENV["REDIS_URL"])
+    name = sentinel_uri.path.delete_prefix("/")
+    sentinels = Resolv.getaddresses(sentinel_uri.host).map { { host: it, port: sentinel_uri.port } }
+    sentinel_username = sentinel_uri.user
+    sentinel_password = sentinel_uri.password
+    username = redis_uri.user
+    password = redis_uri.password
+    Redis.new(url: nil, name:, sentinels:, sentinel_username:, sentinel_password:, username:, password:)
   else
     port = ENV["DEVBOX"] ? `service_port redis`.strip : 6379
     uri = URI.parse(ENV["REDISCLOUD_URL"] || ENV["REDIS_URL"] || "redis://localhost:#{port}")

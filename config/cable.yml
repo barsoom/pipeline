@@ -24,6 +24,8 @@ production:
   sentinels: <%= sentinels.to_json %>
   sentinel_username: <%= sentinel_uri.user %>
   sentinel_password: <%= sentinel_uri.password %>
+  username: <%= redis_uri.user %>
+  password: <%= redis_uri.password %>
 <% else %>
   url: <%= url %>
 <% end %>

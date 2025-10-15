@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   # that the background job won't fail due to the root page being slow to load.
   get "sso_update" => ->(_) { [ 200, {}, [ "ok" ] ] }
 
-  get "debug-too-slow" => ->(_) { sleep 35 && [ 200, {}, [ "ok" ] ] }
-  get "debug-almost-too-slow" => ->(_) { sleep 25 && [ 200, {}, [ "ok" ] ] }
-
   # NOTE: If you change anything here, also check JwtAuthentication config in application.rb
   namespace :api do
     resource :build_status, only: :create

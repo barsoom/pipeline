@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby file: ".ruby-version"
 
-gem "rails", "~> 8.0.2"  # LOCKED: It's Rails!
+gem "rails", "~> 8.1"  # LOCKED: It's Rails!
 
 gem "attr_extras"
 gem "barsoom_utils"

@@ -20,12 +20,13 @@ Rails.application.configure do
 
   # Heroku needs this
   config.public_file_server.enabled = true
-
-  # Do not fall back to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  # Cache assets for far-future expiry since they are all digest stamped.
+  config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
+  # Do not fall back to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false
 
   config.action_cable.allowed_request_origins = production_hosts
 
@@ -44,7 +45,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
+  # Change to "debug" to log everything (including potentially personally-identifiable information!).
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
@@ -59,8 +60,7 @@ Rails.application.configure do
   # Replace the default in-process and non-durable queuing backend for Active Job.
   # config.active_job.queue_adapter = :resque
 
-  # Disable caching for Action Mailer templates even if Action Controller
-  # caching is enabled.
+  # Disable caching for Action Mailer templates even if Action Controller caching is enabled.
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
@@ -70,7 +70,7 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   # config.action_mailer.default_url_options = { host: "example.com" }
 
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
+  # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
   #   password: Rails.application.credentials.dig(:smtp, :password),
@@ -87,7 +87,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Only use :id for inspections in production.
-  # config.active_record.attributes_for_inspect = [ :id ]
+  config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [

@@ -21,7 +21,7 @@ Bundler.require(*Rails.groups)
 module Pipeline
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 8.0
+    config.load_defaults 8.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -36,7 +36,7 @@ module Pipeline
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Enable the asset pipeline
+    # Keep the classic asset pipeline enabled for sprockets-backed assets.
     config.assets.enabled = true
 
     default_key = Rails.env.local? ? "test" : nil
@@ -52,7 +52,7 @@ module Pipeline
     unless config.secret_key_base
       puts "You must set SECRET_KEY_BASE. Generate one with 'rake secret'."
 
-      # Don't break in prod, breaks heroku asset precompilation.
+      # Don't break in prod, breaks Heroku asset precompilation.
       exit 1 if Rails.env.local?
     end
   end

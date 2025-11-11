@@ -8,6 +8,12 @@
 #  project_id :integer          not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  idx_revisions_project_created_at  (project_id,created_at DESC)
+#  idx_revisions_project_id_id       (project_id,id)
+#  idx_revisions_project_name_id     (project_id,name,id)
+#
 class Revision < ActiveRecord::Base
   validates :name, format: /\A[a-z0-9]{40}\z/
 

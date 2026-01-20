@@ -10,6 +10,7 @@ class BuildPresenter
     builds = change_status_for_fixed_builds(builds)
     builds = sort_by_mappings(builds)
     builds = apply_mappings(builds)
+    builds = filter_ignored_builds(builds)
     merge_builds_with_the_same_name(builds)
   end
 
@@ -64,6 +65,10 @@ class BuildPresenter
       status = build.status
       new_build(name, status, build)
     }
+  end
+
+  def filter_ignored_builds(builds)
+    builds.reject { |build| build.name == "_ignore" }
   end
 
   def merge_builds_with_the_same_name(builds)

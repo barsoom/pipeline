@@ -64,6 +64,24 @@ RSpec.describe BuildPresenter, "#list" do
     expect(presenter.list.map(&:name)).to eq([ "tests", "staging", "foo_deploy_production" ])
   end
 
+  it "filters out builds mapped to '_ignore'" do
+    builds = [
+      Build.new(name: "foo_tests", status: "successful"),
+      Build.new(name: "Dependabot", status: "failed"),
+      Build.new(name: "foo_deploy", status: "successful"),
+    ]
+    build_mappings = [
+      BuildMapping.new("foo_tests", "tests"),
+      BuildMapping.new("Dependabot", "_ignore"),
+      BuildMapping.new("foo_deploy", "deploy"),
+    ]
+
+    revision = double(:revision, builds:, build_mappings:, newer_revisions: [])
+    presenter = BuildPresenter.new(revision)
+
+    expect(presenter.list.map(&:name)).to eq([ "tests", "deploy" ])
+  end
+
   it "fills out with blank build results until they turn up" do
     builds = [
       Build.new(name: "foo_tests", status: "building"),

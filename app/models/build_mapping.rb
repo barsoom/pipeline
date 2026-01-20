@@ -6,6 +6,6 @@ class BuildMapping
     data.to_s.split("\r\n").map { |mapping_line|
       from, to = mapping_line.split("=")
       BuildMapping.new(from, to)
-    }
+    }.reject { |mapping| mapping.to == "_ignore" }
   end
 end

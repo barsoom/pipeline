@@ -16,4 +16,11 @@ RSpec.describe BuildMapping, ".build_list" do
     mappings = BuildMapping.build_list("")
     expect(mappings.size).to eq(0)
   end
+
+  it "discards mappings set to '_ignore'" do
+    mappings = BuildMapping.build_list("foo_tests=tests\r\nDependabot=_ignore\r\nfoo_deploy=deploy\r\n")
+    expect(mappings.size).to eq(2)
+    expect(mappings.map(&:from)).to eq([ "foo_tests", "foo_deploy" ])
+    expect(mappings.map(&:to)).to eq([ "tests", "deploy" ])
+  end
 end

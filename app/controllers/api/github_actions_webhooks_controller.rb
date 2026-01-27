@@ -1,6 +1,4 @@
 class Api::GithubActionsWebhooksController < ApiController
-  protect_from_forgery prepend: true
-
   def create
     workflow_job = params[:workflow_job]
 

@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   # that the background job won't fail due to the root page being slow to load.
   get "sso_update" => ->(_) { [ 200, {}, [ "ok" ] ] }
 
-  # SSO auth configured in config/initializers/pg_reports.rb
-  mount PgReports::Engine, at: "/pg_reports"
-
   # NOTE: If you change anything here, also check JwtAuthentication config in application.rb
   namespace :api do
     resource :build_status, only: :create

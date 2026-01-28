@@ -201,10 +201,6 @@ GEM
       racc
     pg (1.6.3-x86_64-linux)
     pg (1.6.3-x86_64-linux-musl)
-    pg_reports (0.3.0)
-      csv
-      pg (>= 1.0)
-      rails (>= 5.0)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -369,7 +365,6 @@ DEPENDENCIES
   ostruct
   paper_trail
   pg
-  pg_reports
   pry
   puma
   rails (~> 8.1)

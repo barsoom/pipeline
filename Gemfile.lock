@@ -363,7 +363,6 @@ DEPENDENCIES
   jwt_authentication!
   logger
   mail
-  ostruct
   paper_trail
   pg
   pry

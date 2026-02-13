@@ -15,7 +15,7 @@ module ApplicationCable
 
     def find_verified_user
       if request.session["logged_in"]
-        OpenStruct.new(id: 123, name: "ActionCable for logged-in user")
+        Data.define(:id, :name).new(id: 123, name: "ActionCable for logged-in user")
       else
         reject_unauthorized_connection
       end

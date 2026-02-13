@@ -14,7 +14,6 @@ gem "importmap-rails"
 gem "jwt_authentication", github: "barsoom/jwt_authentication"
 gem "logger" # Ruby 3.5.0 will no longer have this as a part of standard gems. Reason: activesupport 7.1.4
 gem "mail"
-gem "ostruct" # Ruby 3.5.0 will no longer have this as a part of standard gems. Reason: pry 0.14.2
 gem "paper_trail"
 gem "pg"
 gem "puma"

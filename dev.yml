@@ -2,7 +2,7 @@ docker_services:
   postgres:
     image: "postgres:18.1-alpine" # Keep in sync with .github/workflows/ci.yml
     version: "18.1"
-    options: "-e POSTGRES_PASSWORD=dev --publish 5432 -v $DATABASE_ROOT/pipeline/postgres:/var/lib/postgresql/data"
+    options: "-e POSTGRES_PASSWORD=dev --publish 5432 -v $DATABASE_ROOT/pipeline/postgres:/var/lib/postgresql"
   redis:
     image: "redis:7.4.2-alpine" # Keep in sync with .github/workflows/ci.yml
     options: "--publish 6379 -v $DATABASE_ROOT/pipeline/redis:/data"
